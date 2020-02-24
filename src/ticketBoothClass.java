@@ -22,12 +22,15 @@ public class ticketBoothClass {
 
     // Prints out a ticket and the price of the ticket
     public void printTicket() {
+        ticketsSold++;
+        balance=balance-price;
         System.out.println("##########B##T#########");
         System.out.println("# Borgen Trafikselskab #");
         System.out.println("#                     #");
         System.out.println("#        Billet       #");
         System.out.println("#        " + price + " kr.       #");
         System.out.println("#                     #");
+        System.out.println("# Du har "+ balance + " tilbage.   #");
         System.out.println("##########B##T#########");
         System.out.println("##########B##T#########");
         System.out.println();

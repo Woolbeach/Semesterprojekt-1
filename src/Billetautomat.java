@@ -8,7 +8,7 @@ public class Billetautomat {
     public static void main(String[] args) {
         Scanner scanObj = new Scanner(System.in);       //Create scanner object
         int choice = 0;                                 //Menu choice integer
-        final int exitProtocol = 4;                           //Menu #, exit menu
+        final int exitProtocol = 4;                     //Menu #, exit menu
 
         System.out.println("Welcome!");                 //Welcome prompt
 
@@ -18,9 +18,9 @@ public class Billetautomat {
             System.out.println("Please choose one of the following options");
             System.out.println(
                     "#1:  Case1\n" +
-                    "#2:  Case2\n" +
-                    "#3:  Case3\n" +
-                    "#4:  Exit\n"
+                            "#2:  Case2\n" +
+                            "#3:  Case3\n" +
+                            "#4:  Exit\n"
             );
 
             choice = scanObj.nextInt();                 //Scan for menu choice
@@ -39,7 +39,7 @@ public class Billetautomat {
                     System.out.println("Goodbye!");
                     break;
                 default:                                //Unknown command
-                    System.out.println("Unknown command, please try again");
+                    System.err.println("Unknown command, please try again");
             }
         }
     }

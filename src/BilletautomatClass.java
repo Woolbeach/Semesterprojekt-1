@@ -1,7 +1,7 @@
 
 public class BilletautomatClass {
     private double price;
-    private int balance;
+    private double balance;
     private int ticketsSold;
 
 
@@ -11,7 +11,7 @@ public class BilletautomatClass {
 
     public void udskrivBillet() {                       // Prints out a ticket and the price of the ticket
         System.out.println("##########B##T#########");  //
-        System.out.println("# BlueJ Trafikselskab #");
+        System.out.println("# Borgen Trafikselskab #");
         System.out.println("#                     #");
         System.out.println("#        Billet       #");
         System.out.println("#        " + price + " kr.       #");
@@ -21,9 +21,12 @@ public class BilletautomatClass {
         System.out.println();
     }
     //Constructor
-    public BilletautomatClass(double ticketPrice) {
+    public BilletautomatClass(double ticketPrice, double startBalance) {
         //Checks for valid price before implementing
-        if (ticketPrice > 0) price = ticketPrice;
+        if (ticketPrice > 0 && startBalance >= 0){
+            price = ticketPrice;
+            balance = startBalance;
+        }
         else System.err.println("Unable to set price - invalid value");
     }
 
@@ -34,16 +37,17 @@ public class BilletautomatClass {
         else System.err.println("Access denied - Wrong passcode");
     }
 
-    //returns current balance value
+    //Returns current balance value
     public double getBalance(){
         return balance;
     }
 
-    //returns collective sales as an integer
+    //Returns collective sales as an integer
     public double getSales(String accessCode){
         //if password is correct, the sales are returned
         if(accessCode.equals("1234")){
             return price*ticketsSold;
         }
+        return 0;
     }
 }

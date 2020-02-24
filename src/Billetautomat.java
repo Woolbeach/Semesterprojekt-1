@@ -3,7 +3,10 @@
 |   Project:        Billetautomat
 |   Class purpose:  Main class
  --------------------------------------------------------------------------------*/
+import java.util.Scanner;                       //Import scanner
 public class Billetautomat {
     public static void main(String[] args) {
+        Scanner scanObj = new Scanner(System.in);       // Create scanner object
+
     }
 }

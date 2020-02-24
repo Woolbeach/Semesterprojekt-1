@@ -4,6 +4,7 @@ public class Billetautomat {
 
         System.out.println("Is this shit working?");
         System.out.println("Maybe");
+        System.out.println("Filip: maybe yes?")
     }
 
 }

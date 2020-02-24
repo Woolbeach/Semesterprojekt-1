@@ -3,7 +3,19 @@ public class BilletautomatClass {
     private double price;
     private double balance;
     private int ticketsSold;
-
+    // constructor
+    java.util.Scanner scanObj = new java.util.Scanner(System.in);
+    public BilletautomatClass(double ticketPrice, double startBalance) {
+        price = ticketPrice;
+        balance = startBalance;
+        //Checks for valid price before implementing
+        while (price < 0 || balance < 0){
+            System.err.println("Invalid price and/or startBalance");
+            price=scanObj.nextDouble();
+            balance=scanObj.nextDouble();
+        }
+        System.out.println("Price and balance has been created properly");
+    }
     // Returns the price of a tickets current price
     public double getPrice() {
         return price;
@@ -20,17 +32,6 @@ public class BilletautomatClass {
         System.out.println("##########B##T#########");
         System.out.println("##########B##T#########");
         System.out.println();
-    }
-    //Constructor
-    public BilletautomatClass(double ticketPrice, double startBalance) {
-        price = ticketPrice;
-        balance = startBalance;
-        //Checks for valid price before implementing
-        while (ticketPrice < 0 || startBalance < 0){
-            System.err.println("Invalid price and/or startBalance");
-
-        }
-
     }
 
     //SetPrice method

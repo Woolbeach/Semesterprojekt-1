@@ -32,9 +32,11 @@ public class BilletautomatClass {
 
     //SetPrice method
     public void setPrice(String accessCode, double newPrice) {
-        //if password is correct, the price is updated
-        if (accessCode.equals("1234")) price = newPrice;
-        else System.err.println("Access denied - Wrong passcode");
+        //if password is correct and price is > 0, the price is updated
+        if (accessCode.equals("1234") && newPrice > 0) {
+            price = newPrice;
+        }
+        else System.err.println("Access denied - Wrong passcode and/or invalid price");
     }
 
     //Returns current balance value

@@ -43,6 +43,7 @@ public class ticketBoothClass {
         }
     }
 
+    //Prints out a test ticket
     public void printTestTicket() {
         if(testBalance >= price){
             testBalance=testBalance-price;
@@ -73,6 +74,7 @@ public class ticketBoothClass {
         return balance;
     }
 
+    //Returns a test balance
     public double setTestBalance(int newBalance){
         return testBalance = newBalance;
     }

@@ -1,4 +1,3 @@
-import org.w3c.dom.ls.LSOutput;
 
 public class Billetautomat {
     public static void main(String[] args) {

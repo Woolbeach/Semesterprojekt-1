@@ -4,6 +4,7 @@ public class BilletautomatClass {
     private int balance;
     private int ticketsSold;
 
+
     public double getPrice() {
         return price;
     } // Returns the price of a tickets current price

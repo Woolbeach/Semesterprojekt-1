@@ -25,8 +25,7 @@ public class ticketBoothClass {
     public ticketBoothClass(double ticketPrice, double startBalance) {
         price = ticketPrice;
         balance = startBalance;
-        //Checks for valid price before implementing
-        while (ticketPrice < 0 || startBalance < 0){
+        while (ticketPrice < 0 || startBalance < 0){            //Checks for valid price before implementing
             System.err.println("Invalid price and/or startBalance");
 
         }
@@ -35,8 +34,7 @@ public class ticketBoothClass {
 
     //SetPrice method
     public void setPrice(String accessCode, double newPrice) {
-        //if password is correct and price is > 0, the price is updated
-        if (accessCode.equals("1234") && newPrice > 0) {
+        if (accessCode.equals("1234") && newPrice > 0) {            //if password is correct and price is > 0, the price is updated
             price = newPrice;
         }
         else System.err.println("Access denied - Wrong passcode and/or invalid price");
@@ -49,8 +47,9 @@ public class ticketBoothClass {
 
     //Returns collective sales as an integer
     public double getSales(String accessCode){
-        //if password is correct, the sales are returned
-        if(accessCode.equals("1234")){
+
+
+        if(accessCode.equals("1234")){          //if password is correct, the sales are returned
             return price*ticketsSold;
         }
         return 0;

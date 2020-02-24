@@ -10,5 +10,4 @@ public class Billetautomat {
         System.out.println("Jonas her");
 
     }
-
 }

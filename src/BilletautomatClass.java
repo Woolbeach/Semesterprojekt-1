@@ -1,9 +1,24 @@
 
 public class BilletautomatClass {
     private double price;
-    private double balance;
+    private int balance;
     private int ticketsSold;
 
+    public double getPrice() {
+        return price;
+    } // Returns the price of a tickets current price
+
+    public void udskrivBillet() {                       // Prints out a ticket and the price of the ticket
+        System.out.println("##########B##T#########");  //
+        System.out.println("# BlueJ Trafikselskab #");
+        System.out.println("#                     #");
+        System.out.println("#        Billet       #");
+        System.out.println("#        " + price + " kr.       #");
+        System.out.println("#                     #");
+        System.out.println("##########B##T#########");
+        System.out.println("##########B##T#########");
+        System.out.println();
+    }
     //Constructor
     public BilletautomatClass(double ticketPrice) {
         //Checks for valid price before implementing

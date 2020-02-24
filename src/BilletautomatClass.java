@@ -4,12 +4,13 @@ public class BilletautomatClass {
     private double balance;
     private int ticketsSold;
 
-
+    // Returns the price of a tickets current price
     public double getPrice() {
         return price;
-    } // Returns the price of a tickets current price
+    }
 
-    public void udskrivBillet() {                       // Prints out a ticket and the price of the ticket
+    // Prints out a ticket and the price of the ticket
+    public void printTicket() {
         System.out.println("##########B##T#########");  //
         System.out.println("# Borgen Trafikselskab #");
         System.out.println("#                     #");
@@ -22,12 +23,14 @@ public class BilletautomatClass {
     }
     //Constructor
     public BilletautomatClass(double ticketPrice, double startBalance) {
+        price = ticketPrice;
+        balance = startBalance;
         //Checks for valid price before implementing
-        if (ticketPrice > 0 && startBalance >= 0){
-            price = ticketPrice;
-            balance = startBalance;
+        while (ticketPrice < 0 || startBalance < 0){
+            System.err.println("Invalid price and/or startBalance");
+
         }
-        else System.err.println("Unable to set price - invalid value");
+
     }
 
     //SetPrice method

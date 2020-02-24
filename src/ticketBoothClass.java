@@ -51,32 +51,9 @@ public class ticketBoothClass {
     }
 
     //Returns collective sales as a double
-    public void getSales() {
-        Scanner scanObj = new Scanner(System.in);
-        int choice = 0;
-        final int exitProtocol = 3;
-        double currentSales = price * ticketsSold;            //calculates sales and prints it
-        choice = scanObj.nextInt();
-
-        //switch case for user choices
-        while (choice != exitProtocol) {
-            switch (choice) {
-                case 1:
-                    System.out.println(currentSales);
-                    break;
-                case 2:
-                    double newPrice = scanObj.nextDouble();
-                    while (newPrice < 0) {
-                        System.err.println("Invalid price");
-                    }
-                    price = newPrice;
-                case exitProtocol:
-                    break;
-                default:
-                    System.out.println("Press 1 to review sales, press 2 to change ticket price");
-            }
+    public double getSales() {
+        return price * ticketsSold;
         }
-    }
 
     //Returns true if accessCode is correct
     public boolean accessCode(String code) {

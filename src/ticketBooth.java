@@ -13,7 +13,8 @@ public class ticketBooth {
         int choice = 0;                                 //Menu choice integer
         final int exitProtocol = 5;                     //Menu #, exit menu
         int adminChoice = 0;
-        final int adminExitProtocol = 4;
+        final int adminExitProtocol = 5;
+        double salesWithCurrentPrice;
 
         System.out.println("Welcome!");                 //Welcome prompt
 
@@ -22,9 +23,10 @@ public class ticketBooth {
             //Prompt menu
             System.out.println("Please choose one of the following options");
             System.out.println(
-                    "#1:  Case1\n" +
+                    "#1:  Print ticket\n" +
                             "#2:  Ticket price\n" +
                             "#3:  Check balance\n" +
+                            "#4:  Admin menu\n" +
                             "#" + exitProtocol + ":  Exit\n"
             );
 
@@ -32,7 +34,6 @@ public class ticketBooth {
 
             switch (choice) {                             //Switch case begin
                 case 1:                                 //Print ticket
-                    System.out.println("Printing ticket");
                     booth.printTicket();
                     break;
                 case 2:                                 //Print ticket price
@@ -42,29 +43,39 @@ public class ticketBooth {
                     System.out.println("Your balance is: " + booth.getBalance() + " DKK");
                     break;
                 case 4:
-                    System.out.println("Admin menu");
                     System.out.println("Please enter password");
                     scanObj.nextLine();
                     String password = scanObj.nextLine();
 
                     if(booth.accessCode(password) == true){
                         System.out.println("Access granted");
-                        System.out.println("Please choose one of the following options");
-                        System.out.println(
-                                "#1:  Case1" +
-                                        "#2:  Case2" +
-                                        "#3:  Case3"
-                        );
+                        salesWithCurrentPrice = booth.getSales();
                         while(adminChoice != adminExitProtocol){
+                            System.out.println("Please choose one of the following options");
+                            System.out.println(
+                                    "#1:  Get sales\n" +
+                                            "#2:  Set price\n" +
+                                            "#3:  Insert test balance\n" +
+                                            "#4:  Print test-ticket\n" +
+                                            "#" + adminExitProtocol + "  Exit"
+                            );
+
+                            adminChoice = scanObj.nextInt();
+
                             switch(adminChoice){
                                 case 1:
-                                    System.out.println("Case 1");
+                                    System.out.println("Sales: " + booth.getSales() + " DKK");
                                     break;
                                 case 2:
-                                    System.out.println("Case 2");
+                                    System.out.println("Insert new price in DKK");
+                                    booth.setPrice(scanObj.nextInt());
                                     break;
                                 case 3:
-                                    System.out.println("Case 3");
+                                    System.out.println("Insert test balance");
+                                    double testBalance = booth.setTestBalance(scanObj.nextInt());
+                                    break;
+                                case 4:
+                                    booth.printTestTicket();
                                     break;
                                 case adminExitProtocol:
                                     System.out.println("Goodbye!");
@@ -73,6 +84,7 @@ public class ticketBooth {
                                     System.err.println("Unknown command, please try again");
                             }
                         }
+                        adminChoice = 0;
                     }else{
                         System.out.println("Wrong password");
                     }

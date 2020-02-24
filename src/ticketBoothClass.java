@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class ticketBoothClass {
     private double price;
     private double balance;
+    private double testBalance;
     private int ticketsSold;
     //Constructor
     java.util.Scanner scanObj = new java.util.Scanner(System.in);
@@ -24,18 +25,40 @@ public class ticketBoothClass {
 
     // Prints out a ticket and the price of the ticket
     public void printTicket() {
-        ticketsSold++;
-        balance=balance-price;
-        System.out.println("##########B##T#########");
-        System.out.println("# Borgen Trafikselskab #");
-        System.out.println("#                     #");
-        System.out.println("#        Billet       #");
-        System.out.println("#        " + price + " kr.       #");
-        System.out.println("#                     #");
-        System.out.println("# Du har "+ balance + " tilbage.   #");
-        System.out.println("##########B##T#########");
-        System.out.println("##########B##T#########");
-        System.out.println();
+        if(balance >= price){
+            ticketsSold++;
+            balance=balance-price;
+            System.out.println("##########B##T#########");
+            System.out.println("# Borgen Trafikselskab #");
+            System.out.println("#                     #");
+            System.out.println("#        Billet       #");
+            System.out.println("#        " + price + " kr.       #");
+            System.out.println("#                     #");
+            System.out.println("# Du har "+ balance + " tilbage.   #");
+            System.out.println("##########B##T#########");
+            System.out.println("##########B##T#########");
+            System.out.println();
+        }else{
+            System.out.println("Not enough balance");
+        }
+    }
+
+    public void printTestTicket() {
+        if(testBalance >= price){
+            testBalance=testBalance-price;
+            System.out.println("##########B##T#########");
+            System.out.println("# Borgen Trafikselskab #");
+            System.out.println("#                     #");
+            System.out.println("#        Billet       #");
+            System.out.println("#        " + price + " kr.       #");
+            System.out.println("#                     #");
+            System.out.println("# Du har "+ testBalance + " tilbage.   #");
+            System.out.println("##########B##T#########");
+            System.out.println("##########B##T#########");
+            System.out.println();
+        }else{
+            System.out.println("Not enough balance");
+        }
     }
 
     //SetPrice method
@@ -48,6 +71,10 @@ public class ticketBoothClass {
     //Returns current balance value
     public double getBalance() {
         return balance;
+    }
+
+    public double setTestBalance(int newBalance){
+        return testBalance = newBalance;
     }
 
     //Returns collective sales as a double

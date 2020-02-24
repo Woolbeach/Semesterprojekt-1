@@ -8,6 +8,7 @@ public class Billetautomat {
         System.out.println("Hej med dig Filip");
         System.out.println("Sidste test");
         System.out.println("Jonas her");
+
     }
 
 }

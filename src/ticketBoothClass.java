@@ -1,5 +1,5 @@
 
-public class BilletautomatClass {
+public class ticketBoothClass {
     private double price;
     private double balance;
     private int ticketsSold;
@@ -22,7 +22,7 @@ public class BilletautomatClass {
         System.out.println();
     }
     //Constructor
-    public BilletautomatClass(double ticketPrice, double startBalance) {
+    public ticketBoothClass(double ticketPrice, double startBalance) {
         price = ticketPrice;
         balance = startBalance;
         //Checks for valid price before implementing

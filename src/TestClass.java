@@ -1,5 +1,3 @@
-public class TestClass {
-    public static void main(String[] args) {
-        System.out.println("hej");
-    }
+public class Testclass {
+    System.out.println("Hej med dig filip");
 }

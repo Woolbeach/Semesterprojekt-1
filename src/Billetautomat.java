@@ -6,6 +6,7 @@ public class Billetautomat {
         System.out.println("Maybe");
         System.out.println("Filip: maybe yes?");
         System.out.println("Hej med dig Filip");
+        System.out.println("Sidste test");
     }
 
 }

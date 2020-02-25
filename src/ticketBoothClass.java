@@ -44,16 +44,16 @@ public class ticketBoothClass {
     }
 
     //Prints out a test ticket
-    public void printTestTicket(double balancetest) {
-        if(balancetest >= price){
-            balancetest=balancetest-price;
+    public void printTestTicket() {
+        if(testBalance >= price){
+            testBalance+=-price;
             System.out.println("##########B##T#########");
             System.out.println("# Borgen Trafikselskab #");
             System.out.println("#                     #");
             System.out.println("#        Billet       #");
             System.out.println("#        " + price + " kr.       #");
             System.out.println("#                     #");
-            System.out.println("# Du har "+ balancetest + " tilbage.   #");
+            System.out.println("# Du har "+ testBalance + " tilbage.   #");
             System.out.println("##########B##T#########");
             System.out.println("##########B##T#########");
             System.out.println();
@@ -76,7 +76,7 @@ public class ticketBoothClass {
 
     //Returns a test balance
     public double setTestBalance(int newBalance){
-        return testBalance = newBalance;
+        return testBalance += newBalance;
     }
 
     //Returns collective sales as a double

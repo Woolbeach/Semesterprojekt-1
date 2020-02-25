@@ -78,7 +78,7 @@ public class ticketBooth {
                                     testBalance += booth.setTestBalance(scanObj.nextInt());
                                     break;
                                 case 4:                             //Print test ticket
-                                    booth.printTestTicket(testBalance);
+                                    booth.printTestTicket();
                                     break;
                                 case adminExitProtocol:             //Exit
                                     System.out.println("Goodbye!");

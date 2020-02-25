@@ -15,6 +15,7 @@ public class ticketBooth {
         int adminChoice = 0;                            //Admin menu choice integer
         final int adminExitProtocol = 5;                //Menu #, exit admin menu
         double salesWithCurrentPrice;                   //Save sales with the current price
+        double testBalance = 0;                         //initialize variable
 
         System.out.println("Welcome!");                 //Welcome prompt
 
@@ -74,10 +75,10 @@ public class ticketBooth {
                                     break;
                                 case 3:                             //Insert test balance
                                     System.out.println("Insert test balance");
-                                    double testBalance = booth.setTestBalance(scanObj.nextInt());
+                                    testBalance += booth.setTestBalance(scanObj.nextInt());
                                     break;
                                 case 4:                             //Print test ticket
-                                    booth.printTestTicket();
+                                    booth.printTestTicket(testBalance);
                                     break;
                                 case adminExitProtocol:             //Exit
                                     System.out.println("Goodbye!");

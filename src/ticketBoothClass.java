@@ -53,7 +53,7 @@ public class ticketBoothClass {
             System.out.println("#        Billet       #");
             System.out.println("#        " + price + " kr.       #");
             System.out.println("#                     #");
-            System.out.println("# Du har "+ testBalance + " tilbage.   #");
+            System.out.println("# Du har "+ testBalance + " kr. tilbage.   #");
             System.out.println("##########B##T#########");
             System.out.println("##########B##T#########");
             System.out.println();

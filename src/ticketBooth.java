@@ -1,6 +1,6 @@
 /*--------------------------------------------------------------------------------
 |   Group members:  Christian Ulstrand (s195162), Filip Kristiansen (s195169), Jonas Gehrke (s195155) & Emil Overgaard (s195172)
-|   Project:        ticketBooth
+|   Project:        TicketBooth
 |   Class purpose:  Main class
  --------------------------------------------------------------------------------*/
 

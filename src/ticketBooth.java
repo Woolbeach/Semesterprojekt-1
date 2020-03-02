@@ -1,5 +1,5 @@
 /*--------------------------------------------------------------------------------
-|   Group members:  Christian Ulstrand (s195162), Filip Kristiansen (s195169) & Jonas Gehrke (s195155)
+|   Group members:  Christian Ulstrand (s195162), Filip Kristiansen (s195169), Jonas Gehrke (s195155) & Emil Overgaard (s195172)
 |   Project:        ticketBooth
 |   Class purpose:  Main class
  --------------------------------------------------------------------------------*/
@@ -7,6 +7,8 @@
 import java.util.Scanner;                       //Import scanner
 
 public class ticketBooth {
+    
+    
     public static void main(String[] args) {
         Scanner scanObj = new Scanner(System.in);       //Create scanner object
         ticketBoothClass booth = new ticketBoothClass(24, 0);    //Create Booth object

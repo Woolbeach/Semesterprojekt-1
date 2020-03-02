@@ -7,8 +7,7 @@
 import java.util.Scanner;                       //Import scanner
 
 public class ticketBooth {
-    
-    
+
     public static void main(String[] args) {
         Scanner scanObj = new Scanner(System.in);       //Create scanner object
         ticketBoothClass booth = new ticketBoothClass(24, 0);    //Create Booth object

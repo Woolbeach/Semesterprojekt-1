@@ -56,11 +56,7 @@ public class ticketBoothClass {
         return testBalance += newBalance;
     }
 
-    //Returns collective sales as a double
-    public double getSales() {
-        return price * ticketsSold;
-        }
-    
+
     public double getMoneymade(){
         return moneyMade;
     }

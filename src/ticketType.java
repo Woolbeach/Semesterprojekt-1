@@ -2,6 +2,7 @@ public class ticketType {
     public String name;
     public double price;
     public int id;
+    public int ticketsSold;
 
     ticketType(String name, double price, int id){
         name = name;

@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.ArrayList;
 
 public class ticketBoothClass {
     private double price;
@@ -7,11 +7,12 @@ public class ticketBoothClass {
     private int ticketsSold;
     private double moneyMade;
 
+    public ArrayList<transactions>transactionsArrayList = new ArrayList<transactions>();
+
     ticketType adult = new ticketType("Adult", 24, 1);
     ticketType child = new ticketType("Child", 12, 2);
     ticketType bicycle = new ticketType("Bike", 18, 3);
     ticketType elderly = new ticketType("Elderly", 12, 4);
-
 
     //Constructor
     java.util.Scanner scanObj = new java.util.Scanner(System.in);
@@ -23,29 +24,6 @@ public class ticketBoothClass {
             System.err.println("Invalid price and/or startBalance");
             price = scanObj.nextDouble();
             balance = scanObj.nextDouble();
-        }
-    }
-
-
-
-    // Prints out a ticket and the price of the ticket
-    public void printTicket() {
-        if(balance >= price){
-            ticketsSold++;
-            balance=balance-price;
-            System.out.println("##########B##T#########");
-            System.out.println("# Borgen Trafikselskab #");
-            System.out.println("#                     #");
-            System.out.println("#        Billet       #");
-            System.out.println("#        " + price + " kr.       #");
-            System.out.println("#                     #");
-            System.out.println("# Du har "+ balance + " tilbage.   #");
-            System.out.println("##########B##T#########");
-            System.out.println("##########B##T#########");
-            System.out.println();
-            moneyMade+=price; //tilføjer prisen på billet til totalt beløb af penge der er tjent
-        }else{
-            System.out.println("Not enough balance");
         }
     }
 
@@ -66,13 +44,6 @@ public class ticketBoothClass {
         }else{
             System.out.println("Not enough balance");
         }
-    }
-
-    //SetPrice method
-    public void setPrice(double newPrice) {
-        if (newPrice > 0) {            //if password is correct and price is > 0, the price is updated
-            price = newPrice;
-        } else System.err.println("Access denied - Invalid price");
     }
 
     //Returns current balance value

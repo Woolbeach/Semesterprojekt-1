@@ -6,6 +6,13 @@ public class ticketBoothClass {
     private double testBalance;
     private int ticketsSold;
     private double moneyMade;
+
+    ticketType adult = new ticketType("Adult", 24, 1);
+    ticketType child = new ticketType("Child", 12, 2);
+    ticketType bicycle = new ticketType("Bike", 18, 3);
+    ticketType elderly = new ticketType("Elderly", 12, 4);
+
+
     //Constructor
     java.util.Scanner scanObj = new java.util.Scanner(System.in);
 
@@ -19,10 +26,7 @@ public class ticketBoothClass {
         }
     }
 
-    // Returns the price of a tickets current price
-    public double getPrice() {
-        return price;
-    }
+
 
     // Prints out a ticket and the price of the ticket
     public void printTicket() {
@@ -53,7 +57,7 @@ public class ticketBoothClass {
             System.out.println("# Borgen Trafikselskab #");
             System.out.println("#                     #");
             System.out.println("#        Billet       #");
-            System.out.println("#        " + price + " kr.       #");
+            System.out.println("#        " + price + " kr   .       #");
             System.out.println("#                     #");
             System.out.println("# Du har "+ testBalance + " kr. tilbage.   #");
             System.out.println("##########B##T#########");

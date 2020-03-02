@@ -19,12 +19,14 @@ public class ticketType {
     public double getPrice() {
         return price;
     }
+
     //SetPrice method
     public void setPrice(double newPrice) {
         if (newPrice > 0) {            //if price is > 0, the price is updated
             price = newPrice;
         } else System.err.println("Invalid price");
     }
+
     // Prints out a ticket and the price of the ticket
     public void printTicket(int balance) {
         if(balance >= price){

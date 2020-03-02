@@ -17,14 +17,7 @@ public class ticketBoothClass {
     //Constructor
     java.util.Scanner scanObj = new java.util.Scanner(System.in);
 
-    public ticketBoothClass(double ticketPrice, double startBalance) {
-        price = ticketPrice;
-        balance = startBalance;
-        while (price < 0 || balance < 0) {            //Checks for valid price before implementing
-            System.err.println("Invalid price and/or startBalance");
-            price = scanObj.nextDouble();
-            balance = scanObj.nextDouble();
-        }
+    public ticketBoothClass() {
     }
 
     //Prints out a test ticket

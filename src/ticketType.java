@@ -10,6 +10,11 @@ public class ticketType {
         id = id;
     }
 
+    //Returns collective sales as a double
+    public double getSales() {
+        return price * ticketsSold;
+    }
+
     // Returns the price of a tickets current price
     public double getPrice() {
         return price;

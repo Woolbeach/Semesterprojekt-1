@@ -5,6 +5,7 @@ public class ticketBoothClass {
     private double balance;
     private double testBalance;
     private int ticketsSold;
+    private double moneyMade;
     //Constructor
     java.util.Scanner scanObj = new java.util.Scanner(System.in);
 
@@ -38,6 +39,7 @@ public class ticketBoothClass {
             System.out.println("##########B##T#########");
             System.out.println("##########B##T#########");
             System.out.println();
+            moneyMade+=price; //tilføjer prisen på billet til totalt beløb af penge der er tjent
         }else{
             System.out.println("Not enough balance");
         }
@@ -83,6 +85,10 @@ public class ticketBoothClass {
     public double getSales() {
         return price * ticketsSold;
         }
+    
+    public double getMoneymade(){
+        return moneyMade;
+    }
 
     //Returns true if accessCode is correct
     public boolean accessCode(String code) {

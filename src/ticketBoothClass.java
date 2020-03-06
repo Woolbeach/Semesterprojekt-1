@@ -7,7 +7,8 @@ public class ticketBoothClass {
     private int ticketsSold;
     private double moneyMade;
 
-    public ArrayList<transactions>transactionsArrayList = new ArrayList<transactions>();
+    //tilføjer et objekt der håndterer transactions
+    transactions transactionsHandler = new transactions();
 
     ticketType adult = new ticketType("Adult", 24, 1);
     ticketType child = new ticketType("Child", 12, 2);

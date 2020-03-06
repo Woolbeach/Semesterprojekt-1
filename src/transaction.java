@@ -11,4 +11,8 @@ public class transaction {
         amount = x;
         id = y;
     }
+
+    public String toString(){
+        return date+","+amount+","+id;
+    }
 }

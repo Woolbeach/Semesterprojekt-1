@@ -30,19 +30,15 @@ public class ticketType {
     // Prints out a ticket and the price of the ticket
     public void printTicket(int balance) {
         if(balance >= price){
-            ticketsSold++;
-            balance=balance-price;
             System.out.println("##########B##T#########");
             System.out.println("# Borgen Trafikselskab #");
-            System.out.println("#                     #");
-            System.out.println("#        Billet       #");
-            System.out.println("#        " + price + " kr.       #");
-            System.out.println("#                     #");
-            System.out.println("# Du har "+ balance + " tilbage.   #");
+            System.out.println("#\t\t\t\t#");
+            System.out.println("#\t"+name+"-Billet\t#");
+            System.out.println("#\t" + price + " kr.\t#");
+            System.out.println("#\t\t\t\t#");
             System.out.println("##########B##T#########");
             System.out.println("##########B##T#########");
             System.out.println();
-            moneyMade+=price; //tilføjer prisen på billet til totalt beløb af penge der er tjent
         }else{
             System.out.println("Not enough balance");
         }

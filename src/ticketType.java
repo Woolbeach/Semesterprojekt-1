@@ -4,6 +4,7 @@ public class ticketType {
     public int id;
     public int ticketsSold;
 
+    //konstruktøren
     ticketType(String name1, double price1, int id1){
         name = name1;
         price = price1;
@@ -44,6 +45,7 @@ public class ticketType {
         }
     }
 
+    //printer information om billeten
     public String toString(){
         return "Info, name:" + name + " price: " + price + " id: " + id;
     }

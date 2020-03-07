@@ -20,6 +20,7 @@ public class transactions {
     }
 
 
+    //metode som skriver en fil med en test streng
     public void writeLog() throws IOException
     {
         FileWriter fil = new FileWriter("logfile.txt");

@@ -22,6 +22,14 @@ public class ticketBoothClass {
     //de bliver tilføjet i et array, så kan man altid tilføje flere typer
     ArrayList<ticketType> ticketList = new ArrayList<ticketType>();
 
+    //det skal gøres i en funktion af en eller anden grund..
+    public void addPrevious(){
+        ticketList.add(adult);
+        ticketList.add(child);
+        ticketList.add(bicycle);
+        ticketList.add(elderly);
+    }
+
     //metode til at tilføje en ny billettype
     public void addTicket(String name,int price,int id){
         ticketType newtick = new ticketType(name,price,id);

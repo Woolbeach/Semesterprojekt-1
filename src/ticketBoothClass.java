@@ -4,22 +4,42 @@ public class ticketBoothClass {
     private double price;
     private double balance;
     private double testBalance;
-    private int ticketsSold;
-    private double moneyMade;
+
+    //variabler en ticketBooth skal have:
+    public String code;
+    public int ticketSales;
+    public double moneyMade;
 
     //tilføjer et objekt der håndterer transactions
     transactions transactionsHandler = new transactions();
 
+    //her er billettyperne
     ticketType adult = new ticketType("Adult", 24, 1);
     ticketType child = new ticketType("Child", 12, 2);
     ticketType bicycle = new ticketType("Bike", 18, 3);
     ticketType elderly = new ticketType("Elderly", 12, 4);
 
-    //Constructor
-    java.util.Scanner scanObj = new java.util.Scanner(System.in);
+    //de bliver tilføjet i et array, så kan man altid tilføje flere typer
+    ArrayList<ticketType> ticketList = new ArrayList<ticketType>();
 
-    public ticketBoothClass() {
+    public void addTicket(String name,int price,int id){
+        ticketType newtick = new ticketType(name,price,id);
+        ticketList.add(newtick);
     }
+
+
+
+    //konstruktøren, opretter en ticketbooth med standard kode 1234
+    public ticketBoothClass(){
+        code = "1234";
+    }
+
+    //konstruktør med en selvvalgt kode
+    public ticketBoothClass(String customcode){
+        code = customcode;
+    }
+
+
 
     //Prints out a test ticket
     public void printTestTicket() {
@@ -57,10 +77,7 @@ public class ticketBoothClass {
 
     //Returns true if accessCode is correct
     public boolean accessCode(String code) {
-        if (code.equals("1234")) {
-            return true;
-        }
-        return false;
+        return code.equals("1234");
     }
 }
 

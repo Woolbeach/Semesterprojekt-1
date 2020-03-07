@@ -6,11 +6,11 @@
 
 import java.util.Scanner;                       //Import scanner
 
-public class ticketBooth {
+public class ticketB_Main {
 
     public static void main(String[] args) {
         Scanner scanObj = new Scanner(System.in);       //Create scanner object
-        ticketBoothClass booth = new ticketBoothClass();    //Create Booth object
+        ticketBoothClass booth = new ticketBoothClass("1234");    //Create Booth object
         int choice = 0;                                 //Menu choice integer
         final int exitProtocol = 5;                     //Menu #, exit menu
         int adminChoice = 0;                            //Admin menu choice integer

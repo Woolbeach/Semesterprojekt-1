@@ -4,10 +4,10 @@ public class ticketType {
     public int id;
     public int ticketsSold;
 
-    ticketType(String name, double price, int id){
-        name = name;
-        price = price;
-        id = id;
+    ticketType(String name1, double price1, int id1){
+        name = name1;
+        price = price1;
+        id = id1;
     }
 
     //Returns collective sales as a double
@@ -42,6 +42,10 @@ public class ticketType {
         }else{
             System.out.println("Not enough balance");
         }
+    }
+
+    public String toString(){
+        return "Info, name:" + name + " price: " + price + " id: " + id;
     }
 
 }

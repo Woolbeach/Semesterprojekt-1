@@ -5,6 +5,8 @@ public class transactions {
 
     //opretter et object array med transaktioner
     ArrayList<transaction> shoppingCart = new ArrayList<transaction>();
+    ArrayList<Double> cashArray = new ArrayList<>();
+    ArrayList<String> dateArray = new ArrayList<>();
 
 
     //funktion som tiljøjer en transaktion
@@ -53,9 +55,6 @@ public class transactions {
     public void logToArray() throws IOException{
         FileReader file = new FileReader("logfile.txt");
         BufferedReader in = new BufferedReader(file);
-        ArrayList cashArray = new ArrayList();
-        ArrayList dateArray = new ArrayList();
-
         String currentLine = in.readLine();
 
         while (currentLine !=null) {
@@ -68,5 +67,14 @@ public class transactions {
         }
         System.out.println(cashArray.toString());
         System.out.println(dateArray.toString());
+    }
+
+    public void findPayback(){
+
+        for(int i = 0;  i < cashArray.size(); i++){
+            if(cashArray.get(i) < 0){
+                System.out.println(dateArray.get(i) + " " + cashArray.get(i));
+            }
+        }
     }
 }

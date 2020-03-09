@@ -52,11 +52,7 @@ public class ticketB_Main {
                     }
                     break;
                 case 2:                                 //Print ticket price
-                    try{
-                        trans.readLog();
-                    }catch(IOException e){
-
-                    }
+                    trans.findPayback();
 
                     break;
                 case 3:                                 //Print balance
@@ -68,58 +64,58 @@ public class ticketB_Main {
                     break;
                 case 4:                                 //Admin menu
                     System.out.println("Please enter password");        //Prompt instructions
-                    scanObj.nextLine();                                 //Remove newLine from earlier
-                    String password = scanObj.nextLine();               //Scan for password
+            scanObj.nextLine();                                 //Remove newLine from earlier
+            String password = scanObj.nextLine();               //Scan for password
 
-                    if(booth.accessCode(password) == true){             //If password is correct
-                        System.out.println("Access granted");
+            if(booth.accessCode(password) == true){             //If password is correct
+                System.out.println("Access granted");
 
 
-                        while(adminChoice != adminExitProtocol){        //While admin menu is active
-                            //Prompt admin menu
-                            System.out.println("Please choose one of the following options");
-                            System.out.println(
-                                    "#1:  Get sales\n" +
-                                            "#2:  Set price\n" +
-                                            "#3:  Insert test balance\n" +
-                                            "#4:  Print test-ticket\n" +
-                                            "#" + adminExitProtocol + "  Exit"
-                            );
+                while(adminChoice != adminExitProtocol){        //While admin menu is active
+                    //Prompt admin menu
+                    System.out.println("Please choose one of the following options");
+                    System.out.println(
+                            "#1:  Get sales\n" +
+                                    "#2:  Set price\n" +
+                                    "#3:  Insert test balance\n" +
+                                    "#4:  Print test-ticket\n" +
+                                    "#" + adminExitProtocol + "  Exit"
+                    );
 
-                            adminChoice = scanObj.nextInt();        //Scan for admin menu choice
+                    adminChoice = scanObj.nextInt();        //Scan for admin menu choice
 
-                            switch(adminChoice){                    //Switch case begin
-                                case 1:                             //Get sales
-                                    System.out.println("Sales: " + " DKK");
-                                    break;
-                                case 2:                             //New price
-                                    System.out.println("Insert new price in DKK");
-                                    break;
-                                case 3:                             //Insert test balance
-                                    System.out.println("Insert test balance");
-                                    testBalance += booth.setTestBalance(scanObj.nextInt());
-                                    break;
-                                case 4:                             //Print test ticket
-                                    booth.printTestTicket();
-                                    break;
-                                case adminExitProtocol:             //Exit
-                                    System.out.println("Goodbye!");
-                                    break;
-                                default:                            //Unknown command
-                                    System.err.println("Unknown command, please try again");
-                            }
-                        }
-                        adminChoice = 0;                            //reset adminChoice
-                    }else{                                          //if password is not correct
-                        System.out.println("Wrong password");
+                    switch(adminChoice){                    //Switch case begin
+                        case 1:                             //Get sales
+                            System.out.println("Sales: " + " DKK");
+                            break;
+                        case 2:                             //New price
+                            System.out.println("Insert new price in DKK");
+                            break;
+                        case 3:                             //Insert test balance
+                            System.out.println("Insert test balance");
+                            testBalance += booth.setTestBalance(scanObj.nextInt());
+                            break;
+                        case 4:                             //Print test ticket
+                            booth.printTestTicket();
+                            break;
+                        case adminExitProtocol:             //Exit
+                            System.out.println("Goodbye!");
+                            break;
+                        default:                            //Unknown command
+                            System.err.println("Unknown command, please try again");
                     }
-                    break;
-                case exitProtocol:                      //Exit
-                    System.out.println("Goodbye!");
-                    break;
-                default:                                //Unknown command
-                    System.err.println("Unknown command, please try again");
+                }
+                adminChoice = 0;                            //reset adminChoice
+            }else{                                          //if password is not correct
+                System.out.println("Wrong password");
             }
+            break;
+            case exitProtocol:                      //Exit
+                System.out.println("Goodbye!");
+                break;
+            default:                                //Unknown command
+                System.err.println("Unknown command, please try again");
+        }
         }
     }
 }

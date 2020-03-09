@@ -12,7 +12,6 @@ public class ticketB_Main {
     public static void main(String[] args) {
         Scanner scanObj = new Scanner(System.in);       //Create scanner object
         ticketBoothClass booth = new ticketBoothClass("1234");    //Create Booth object
-        transaction adultTicket = new transaction(1, 20);
         transactions trans = new transactions();
         int choice = 0;                                 //Menu choice integer
         final int exitProtocol = 5;                     //Menu #, exit menu
@@ -52,7 +51,12 @@ public class ticketB_Main {
                     }
                     break;
                 case 2:                                 //Print ticket price
-                    trans.findPayback();
+                    try{
+                        trans.findPurchase(90);
+                    }catch(IOException e){
+                        System.out.println(":D");
+                    }
+
 
                     break;
                 case 3:                                 //Print balance

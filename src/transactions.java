@@ -59,6 +59,9 @@ public class transactions {
         BufferedReader in = new BufferedReader(file);
         String currentLine = in.readLine();
 
+        cashArray.removeAll(cashArray);
+        dateArray.removeAll(dateArray);
+
         while (currentLine !=null) {
             String[] data = currentLine.split(",");
             double inum = Double.valueOf(data[1]);
@@ -67,14 +70,21 @@ public class transactions {
             dateArray.add(data[0]);
             currentLine = in.readLine();
         }
-        System.out.println(cashArray.toString());
-        System.out.println(dateArray.toString());
     }
 
-    public void findPayback(){
-
+    public void findPayback() throws IOException{
+        logToArray();
         for(int i = 0;  i < cashArray.size(); i++){
             if(cashArray.get(i) < 0){
+                System.out.println(dateArray.get(i) + " " + cashArray.get(i));
+            }
+        }
+    }
+
+    public void findPurchase(double x) throws IOException{
+        logToArray();
+        for(int i = 0;  i < cashArray.size(); i++){
+            if(cashArray.get(i) >= x){
                 System.out.println(dateArray.get(i) + " " + cashArray.get(i));
             }
         }

@@ -48,6 +48,12 @@ public class ticketBoothClass {
         code = customcode;
     }
 
+    public void printTicketTypes(){
+        for (ticketType ticket : ticketList){
+            System.out.println(ticket.toString());
+        }
+    }
+
 
 
     //Prints out a test ticket

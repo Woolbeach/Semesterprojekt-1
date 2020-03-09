@@ -47,7 +47,7 @@ public class ticketType {
 
     //printer information om billeten
     public String toString(){
-        return "Info, name:" + name + " price: " + price + " id: " + id;
+        return "#"+id +"\tType: " + name + "\n#\tPrice: " + price+" DKK\n";
     }
 
 }

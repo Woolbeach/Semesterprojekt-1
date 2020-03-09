@@ -5,9 +5,6 @@ public class transactions {
 
     //opretter et object array med transaktioner
     ArrayList<transaction> shoppingCart = new ArrayList<transaction>();
-    ArrayList<Double> cashArray = new ArrayList<>();
-    ArrayList<String> dateArray = new ArrayList<>();
-
 
     //funktion som tiljøjer en transaktion
     public void addTrans(int amount,int id){
@@ -44,49 +41,13 @@ public class transactions {
     //funktion som printer filen logfile
     //den skal opdateres så den tilføjer det den læser i transList Arrayet
     public void readLog() throws IOException {
-        FileReader file = new FileReader("logfile.txt");
-        BufferedReader in = new BufferedReader(file);
+        FileReader fil = new FileReader("logfile.txt");
+        BufferedReader ind = new BufferedReader(fil);
 
-        String currentLine = in.readLine();
-        while (currentLine != null) {
-            System.out.println("Læst: " + currentLine);
-            currentLine = in.readLine();
-        }
-    }
-
-    public void logToArray() throws IOException{
-        FileReader file = new FileReader("logfile.txt");
-        BufferedReader in = new BufferedReader(file);
-        String currentLine = in.readLine();
-
-        cashArray.removeAll(cashArray);
-        dateArray.removeAll(dateArray);
-
-        while (currentLine !=null) {
-            String[] data = currentLine.split(",");
-            double inum = Double.valueOf(data[1]);
-            cashArray.add(inum);
-
-            dateArray.add(data[0]);
-            currentLine = in.readLine();
-        }
-    }
-
-    public void findPayback() throws IOException{
-        logToArray();
-        for(int i = 0;  i < cashArray.size(); i++){
-            if(cashArray.get(i) < 0){
-                System.out.println(dateArray.get(i) + " " + cashArray.get(i));
-            }
-        }
-    }
-
-    public void findPurchase(double x) throws IOException{
-        logToArray();
-        for(int i = 0;  i < cashArray.size(); i++){
-            if(cashArray.get(i) >= x){
-                System.out.println(dateArray.get(i) + " " + cashArray.get(i));
-            }
+        String linje = ind.readLine();
+        while (linje != null) {
+            System.out.println("Læst: " + linje);
+            linje = ind.readLine();
         }
     }
 }

@@ -122,6 +122,10 @@ public class ticketB_Main {
                             }
                         }
                     }
+
+                    if(checkout){               //XXX change this
+                        System.out.println("Now you will get tickes! if you pay");
+                    }
                 }
 
                 case 5: {
@@ -138,8 +142,8 @@ public class ticketB_Main {
                             //Prompt admin menu
                             System.out.println("Please choose one of the following options");
                             System.out.println(
-                                            "#1:  Get sales\n" +
-                                            "#2:  Set price\n" +
+                                            "#1:  Read log and logfile\n" +
+                                            "#2:  Set price for ticket\n" +
                                             "#3:  Add new ticket\n" +
                                             "#4:  Insert test balance\n" +
                                             "#5:  Print test-ticket\n" +
@@ -150,7 +154,11 @@ public class ticketB_Main {
 
                             switch(adminChoice){                    //Switch case begin
                                 case 1:                             //Get sales
-                                    System.out.println("Sales: " + " DKK");
+                                    try{
+                                        trans.readLog();
+                                    }catch(IOException e){
+                                        System.err.println("error cant write to log file");
+                                    }
                                     break;
                                 case 2:                             //New price
                                     System.out.println("Insert new price in DKK");

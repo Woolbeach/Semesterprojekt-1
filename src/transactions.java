@@ -29,6 +29,8 @@ public class transactions {
         FileWriter fil = new FileWriter("logfile.txt", true);
         PrintWriter ud = new PrintWriter(fil);
 
+
+        //skriver transactions i en fil med følgende format: Dato,mængde,id
         for(int i = 0; i < shoppingCart.size(); i++){
             ud.println(shoppingCart.get(i));
         }

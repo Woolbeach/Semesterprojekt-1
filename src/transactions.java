@@ -5,17 +5,19 @@ public class transactions {
 
     //opretter et object array med transaktioner
     ArrayList<transaction> transList = new ArrayList<transaction>();
+    int numberOfRecords = 0;
 
     //funktion som tiljøjer en transaktion
     public void addTrans(int amount,int id){
       transaction trans = new transaction(amount,id);
       transList.add(trans);
+      numberOfRecords++;
     }
 
     //en funktion som printer alle logge fra arrayet af objekter
     public void printLog(){
         for (transaction trans :transList){
-            trans.toString();
+            System.out.println(trans.toString());
         }
     }
 
@@ -25,7 +27,10 @@ public class transactions {
     {
         FileWriter fil = new FileWriter("logfile.txt");
         PrintWriter ud = new PrintWriter(fil);
-        ud.print("date ticket id amount");
+        for(int i = 0; i < numberOfRecords; i++){
+            ud.println(transList.get(i));
+        }
+
         ud.close(); // luk så alle data skrives til disken
     }
 
@@ -41,5 +46,4 @@ public class transactions {
             linje = ind.readLine();
         }
     }
-
 }

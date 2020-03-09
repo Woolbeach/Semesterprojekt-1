@@ -4,6 +4,7 @@
 |   Class purpose:  Main class
  --------------------------------------------------------------------------------*/
 
+import java.io.IOException;
 import java.util.Scanner;                       //Import scanner
 
 public class ticketB_Main {
@@ -11,6 +12,8 @@ public class ticketB_Main {
     public static void main(String[] args) {
         Scanner scanObj = new Scanner(System.in);       //Create scanner object
         ticketBoothClass booth = new ticketBoothClass("1234");    //Create Booth object
+        transaction adultTicket = new transaction(1, 20);
+        transactions trans = new transactions();
         int choice = 0;                                 //Menu choice integer
         final int exitProtocol = 5;                     //Menu #, exit menu
         int adminChoice = 0;                            //Admin menu choice integer
@@ -18,9 +21,19 @@ public class ticketB_Main {
         double salesWithCurrentPrice;                   //Save sales with the current price
         double testBalance = 0;                         //initialize variable
 
+
+
+
         System.out.println("Welcome!");                 //Welcome prompt
 
         while (choice != exitProtocol) {                //While menu choice is active
+
+            try{
+                trans.writeLog();
+                //trans.readLog();
+            }catch(IOException e){
+                System.err.println("error");
+            }
 
             //Prompt menu
             System.out.println("Please choose one of the following options");
@@ -36,10 +49,10 @@ public class ticketB_Main {
 
             switch (choice) {                           //Switch case begin
                 case 1:                                 //Print ticket
-                    booth.printTicket();
+                    trans.addTrans(20,1);
                     break;
                 case 2:                                 //Print ticket price
-                    System.out.println("Ticket price is: " + booth.getPrice() + " DKK");
+                    System.out.println("Ticket price is: " + " DKK");
                     break;
                 case 3:                                 //Print balance
                     System.out.println("Your balance is: " + booth.getBalance() + " DKK");
@@ -51,7 +64,7 @@ public class ticketB_Main {
 
                     if(booth.accessCode(password) == true){             //If password is correct
                         System.out.println("Access granted");
-                        salesWithCurrentPrice = booth.getSales();       //Save sales with current price
+
 
                         while(adminChoice != adminExitProtocol){        //While admin menu is active
                             //Prompt admin menu
@@ -68,11 +81,10 @@ public class ticketB_Main {
 
                             switch(adminChoice){                    //Switch case begin
                                 case 1:                             //Get sales
-                                    System.out.println("Sales: " + booth.getSales() + " DKK");
+                                    System.out.println("Sales: " + " DKK");
                                     break;
                                 case 2:                             //New price
                                     System.out.println("Insert new price in DKK");
-                                    booth.setPrice(scanObj.nextInt());
                                     break;
                                 case 3:                             //Insert test balance
                                     System.out.println("Insert test balance");

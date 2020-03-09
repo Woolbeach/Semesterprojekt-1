@@ -60,9 +60,6 @@ public class ticketB_Main {
 
                     break;
                 case 3:                                 //Print balance
-
-                    trans.flush();
-
                     break;
                 case 4:                                 //Admin menu
                     System.out.println("Please enter password");        //Prompt instructions

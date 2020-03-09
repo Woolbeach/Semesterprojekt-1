@@ -28,12 +28,7 @@ public class ticketB_Main {
 
         while (choice != exitProtocol) {                //While menu choice is active
 
-            try{
-                trans.writeLog();
-                //trans.readLog();
-            }catch(IOException e){
-                System.err.println("error");
-            }
+
 
             //Prompt menu
             System.out.println("Please choose one of the following options");
@@ -50,12 +45,24 @@ public class ticketB_Main {
             switch (choice) {                           //Switch case begin
                 case 1:                                 //Print ticket
                     trans.addTrans(20,1);
+                    try{
+                        trans.writeLog();
+                    }catch(IOException e){
+                        System.err.println("error cant write to log file");
+                    }
                     break;
                 case 2:                                 //Print ticket price
-                    System.out.println("Ticket price is: " + " DKK");
+                    try{
+                        trans.readLog();
+                    }catch(IOException e){
+
+                    }
+
                     break;
                 case 3:                                 //Print balance
-                    System.out.println("Your balance is: " + booth.getBalance() + " DKK");
+
+                    trans.flush();
+
                     break;
                 case 4:                                 //Admin menu
                     System.out.println("Please enter password");        //Prompt instructions

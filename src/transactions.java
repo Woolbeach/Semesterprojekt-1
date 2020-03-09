@@ -5,6 +5,7 @@ public class transactions {
 
     //opretter et object array med transaktioner
     ArrayList<transaction> transList = new ArrayList<transaction>();
+
     int numberOfRecords = 0;
 
     //funktion som tiljøjer en transaktion
@@ -25,12 +26,13 @@ public class transactions {
     //metode som skriver en fil med en test streng
     public void writeLog() throws IOException
     {
-        FileWriter fil = new FileWriter("logfile.txt");
+        FileWriter fil = new FileWriter("logfile.txt", true);
         PrintWriter ud = new PrintWriter(fil);
+
+
         for(int i = 0; i < numberOfRecords; i++){
             ud.println(transList.get(i));
         }
-
         ud.close(); // luk så alle data skrives til disken
     }
 
@@ -45,5 +47,11 @@ public class transactions {
             System.out.println("Læst: " + linje);
             linje = ind.readLine();
         }
+    }
+
+    public void flush(){
+        System.out.println(transList);
+        transList.removeAll(transList);
+        System.out.println(transList);
     }
 }

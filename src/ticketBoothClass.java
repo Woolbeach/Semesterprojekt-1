@@ -48,9 +48,34 @@ public class ticketBoothClass {
         code = customcode;
     }
 
+
+    //funktion som viser de billetyper der er:
     public void printTicketTypes(){
         for (ticketType ticket : ticketList){
             System.out.println(ticket.toString());
+        }
+    }
+
+    public void addTicketToBasket(int amount, int id){
+        transactionsHandler.addTrans(amount,id);
+    }
+
+
+    //et forsøg på at finde ud af hvor mange af hver billet typer der er i kurven
+    public void basketTickets(){
+        int placeholder = 1;
+        for (ticketType idunno : ticketList){
+            System.out.println("Ticket id: "+placeholder + "amount of that type=" + transactionsHandler.what_the_fuck_is_the_shopping_cart_doing_in_transactions_class(placeholder));
+            placeholder++;
+
+
+            /*int theamount= transactionsHandler.what_the_fuck_is_the_shopping_cart_doing_in_transactions_class(placeholder);
+            if(transactionsHandler.what_the_fuck_is_the_shopping_cart_doing_in_transactions_class(placeholder)>0){
+                for (int i = 0; i < theamount; i++){
+                    idunno.toString();
+                }
+            }
+            placeholder++;*/
         }
     }
 

@@ -30,7 +30,7 @@ public class ticketB_Main {
             //Prompt menu
             System.out.println("Please choose one of the following options");
             System.out.println(
-                    "#1:  Buy ticket\n" +
+                            "#1:  Buy ticket\n" +
                             "#2:  Ticket prices\n" +
                             "#3:  Check basket\n" +
                             "#4:  Admin menu\n" +
@@ -48,7 +48,10 @@ public class ticketB_Main {
                         int wantedTicket = scanObj.nextInt();
                         System.out.println("How many?:");
                         int ticketAmount = scanObj.nextInt();
-                        trans.addTrans(ticketAmount,wantedTicket);
+                        booth.addTicketToBasket(ticketAmount,wantedTicket);
+
+                        System.out.println("You have these tickets in your basket:");
+                        booth.basketTickets();
 
                         //keep adding tickets until No is pressed/type
                             System.out.println("Buy more tickets? Y/N");
@@ -69,6 +72,8 @@ public class ticketB_Main {
                             }
                         }
                     }
+
+
 
                     //trans.addTrans(20,1);
                     /*

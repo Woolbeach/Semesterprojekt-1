@@ -22,6 +22,17 @@ public class transactions {
         }
     }
 
+    //patchwork function (might change the name later)
+    public int what_the_fuck_is_the_shopping_cart_doing_in_transactions_class(int ticketID){
+        int ticketsofthattype=0;
+        for (transaction trans : shoppingCart){
+            if(ticketID == trans.id){
+                ticketsofthattype++;
+            }
+        }
+        return ticketsofthattype;
+    }
+
 
     //metode som skriver en fil med en test streng
     public void writeLog() throws IOException

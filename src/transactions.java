@@ -44,7 +44,6 @@ public class transactions {
     }
 
     //funktion som printer filen logfile
-    //den skal opdateres så den tilføjer det den læser i transList Arrayet
     public void readLog() throws IOException {
         FileReader file = new FileReader("logfile.txt");
         BufferedReader in = new BufferedReader(file);
@@ -56,6 +55,9 @@ public class transactions {
         }
     }
 
+
+
+    //funktion som læser filen logfile og tager datoerne og balance ændring og putter dem i hvert sit array
     public void logToArray() throws IOException{
         FileReader file = new FileReader("logfile.txt");
         BufferedReader in = new BufferedReader(file);

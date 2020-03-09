@@ -22,7 +22,11 @@ public class ticketBoothClass {
 
     public void itemsInBasket(){
         for (basketItem currentItem : userBasket){
-            System.out.println(currentItem.toString());
+            for(ticketType currentTicket : ticketList){
+                if(currentTicket.id == currentItem.id){
+                    System.out.println(currentItem.amount+"x "+currentTicket.basketString());
+                }
+            }
         }
     }
 
@@ -89,6 +93,13 @@ public class ticketBoothClass {
         }
     }
 
+
+    //function for adding money to balance
+    public void addBalance(double moneyin){
+        if (moneyin > 0) balance += moneyin;
+        else System.out.println("Invalid amount!");
+    }
+
     //Returns current balance value
     public double getBalance() {
         return balance;
@@ -101,8 +112,8 @@ public class ticketBoothClass {
 
 
     //Returns true if accessCode is correct
-    public boolean accessCode(String code) {
-        return code.equals("1234");
+    public boolean accessCode(String code1) {
+        return code1.equals(code);
     }
 }
 

@@ -45,6 +45,10 @@ public class ticketType {
         }
     }
 
+    public String basketString(){
+        return name;
+    }
+
     //printer information om billeten
     public String toString(){
         return "#"+id +"\tType: " + name + "\n#\tPrice: " + price+" DKK\n";

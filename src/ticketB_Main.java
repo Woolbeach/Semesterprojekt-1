@@ -48,10 +48,10 @@ public class ticketB_Main {
                         int wantedTicket = scanObj.nextInt();
                         System.out.println("How many?:");
                         int ticketAmount = scanObj.nextInt();
-                        booth.addTicketToBasket(ticketAmount,wantedTicket);
+                        booth.addTicketToBasket(wantedTicket,ticketAmount);
 
                         System.out.println("You have these tickets in your basket:");
-                        booth.basketTickets();
+                        booth.itemsInBasket();
 
                         //keep adding tickets until No is pressed/type
                             System.out.println("Buy more tickets? Y/N");

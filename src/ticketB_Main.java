@@ -13,7 +13,7 @@ public class ticketB_Main {
         Scanner scanObj = new Scanner(System.in);       //Create scanner object
         ticketBoothClass booth = new ticketBoothClass("1234");    //Create Booth object
         transactions trans = new transactions();
-        booth.addPrevious();                            //Add default tickettypes
+        booth.addDefaultTickets();                            //Add default tickettypes
 
         int choice = 0;                                 //Menu choice integer
         final int exitProtocol = 6;                     //Menu #, exit menu
@@ -26,20 +26,19 @@ public class ticketB_Main {
 
         while (choice != exitProtocol) {                //While menu choice is active
 
-
-
             //Prompt menu
             System.out.println("Please choose one of the following options");
             System.out.println(
                             "#1:\tBuy ticket\n" +
                             "#2:\tTicket prices\n" +
-                                    "#3:\tAdd balance\n"+
-                            "#4:\tCheck basket\n" +
+                            "#3:\tAdd balance\n"+
+                            "#4:\tCheckout\n" +
                             "#5:\tAdmin menu\n" +
                             "#" + exitProtocol + ":\tExit\n"
             );
 
             choice = scanObj.nextInt();                 //Scan for menu choice
+            scanObj.nextLine();
 
             switch (choice) {                           //Switch case begin
                 case 1:{
@@ -98,9 +97,34 @@ public class ticketB_Main {
                     int moneyin = scanObj.nextInt();
                     scanObj.nextLine();
                     booth.addBalance(moneyin);
+                    if(moneyin>0){
+                        trans.addTrans(moneyin,-1); //-1 id for adding money
+                    }
+                    break;
                 }
 
-                case 4: {
+                case 4:{
+                    System.out.println("Are you sure you want to check out? Y/N");
+                    boolean checkout = false;
+                    outer:
+                    while (true){
+                        switch (scanObj.nextLine().toLowerCase()){
+                            case "y":{
+                                checkout = true;
+                                break outer;
+                            }
+                            case "n":{
+                                break outer;
+                            }
+                            default:{
+                                System.out.println("Not a valid choice, try again!");
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                case 5: {
                     //Admin menu
                     System.out.println("Please enter password:");        //Prompt instructions
                     scanObj.nextLine();                                 //Remove newLine from earlier

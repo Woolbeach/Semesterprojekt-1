@@ -21,16 +21,31 @@ public class ticketBoothClass {
     }
 
     public void itemsInBasket(){
+        double totalPrice = 0;
         for (basketItem currentItem : userBasket){
             for(ticketType currentTicket : ticketList){
                 if(currentTicket.id == currentItem.id){
                     System.out.println(currentItem.amount+"x "+currentTicket.basketString());
+                    totalPrice += currentItem.amount * currentTicket.price;
                 }
             }
         }
+        System.out.println("Total price: "+totalPrice+"DKK");
     }
 
-    //her er billettyperne
+    public double basketPrice(){
+        double totalPrice = 0;
+        for (basketItem currentItem : userBasket){
+            for(ticketType currentTicket : ticketList){
+                if(currentTicket.id == currentItem.id){
+                    totalPrice += currentItem.amount * currentTicket.price;
+                }
+            }
+        }
+        return totalPrice;
+    }
+
+    //her er default-billettyperne
     ticketType adult = new ticketType("Adult", 24, 1);
     ticketType child = new ticketType("Child", 12, 2);
     ticketType bicycle = new ticketType("Bike", 18, 3);
@@ -40,7 +55,7 @@ public class ticketBoothClass {
     ArrayList<ticketType> ticketList = new ArrayList<ticketType>();
 
     //det skal gøres i en funktion af en eller anden grund..
-    public void addPrevious(){
+    public void addDefaultTickets(){
         ticketList.add(adult);
         ticketList.add(child);
         ticketList.add(bicycle);
@@ -95,9 +110,9 @@ public class ticketBoothClass {
 
 
     //function for adding money to balance
-    public void addBalance(double moneyin){
-        if (moneyin > 0) balance += moneyin;
-        else System.out.println("Invalid amount!");
+    public double addBalance(double moneyin){
+        if (moneyin > 0) {balance += moneyin; return moneyin;}
+        else {System.out.println("Invalid amount!"); return 0;}
     }
 
     //Returns current balance value

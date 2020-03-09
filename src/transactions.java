@@ -43,6 +43,7 @@ public class transactions {
         System.out.println(shoppingCart);
     }
 
+
     //funktion som printer filen logfile
     public void readLog() throws IOException {
         FileReader file = new FileReader("logfile.txt");
@@ -76,6 +77,7 @@ public class transactions {
         }
     }
 
+
     public void findPayback() throws IOException{
         logToArray();
         for(int i = 0;  i < cashArray.size(); i++){
@@ -84,6 +86,7 @@ public class transactions {
             }
         }
     }
+
 
     public void findPurchase(double x) throws IOException{
         logToArray();

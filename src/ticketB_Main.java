@@ -60,6 +60,11 @@ public class ticketB_Main {
 
                     break;
                 case 3:                                 //Print balance
+                    try {
+                        trans.logToArray();
+                    }catch (IOException e){
+
+                    }
                     break;
                 case 4:                                 //Admin menu
                     System.out.println("Please enter password");        //Prompt instructions

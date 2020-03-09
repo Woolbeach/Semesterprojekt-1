@@ -6,6 +6,7 @@ public class transactions {
     //opretter et object array med transaktioner
     ArrayList<transaction> shoppingCart = new ArrayList<transaction>();
 
+
     //funktion som tiljøjer en transaktion
     public void addTrans(int amount,int id){
       transaction trans = new transaction(amount,id);
@@ -39,13 +40,33 @@ public class transactions {
     //funktion som printer filen logfile
     //den skal opdateres så den tilføjer det den læser i transList Arrayet
     public void readLog() throws IOException {
-        FileReader fil = new FileReader("logfile.txt");
-        BufferedReader ind = new BufferedReader(fil);
+        FileReader file = new FileReader("logfile.txt");
+        BufferedReader in = new BufferedReader(file);
 
-        String linje = ind.readLine();
-        while (linje != null) {
-            System.out.println("Læst: " + linje);
-            linje = ind.readLine();
+        String currentLine = in.readLine();
+        while (currentLine != null) {
+            System.out.println("Læst: " + currentLine);
+            currentLine = in.readLine();
         }
+    }
+
+    public void logToArray() throws IOException{
+        FileReader file = new FileReader("logfile.txt");
+        BufferedReader in = new BufferedReader(file);
+        ArrayList cashArray = new ArrayList();
+        ArrayList dateArray = new ArrayList();
+
+        String currentLine = in.readLine();
+
+        while (currentLine !=null) {
+            String[] data = currentLine.split(",");
+            double inum = Double.valueOf(data[1]);
+            cashArray.add(inum);
+
+            dateArray.add(data[0]);
+            currentLine = in.readLine();
+        }
+        System.out.println(cashArray.toString());
+        System.out.println(dateArray.toString());
     }
 }

@@ -5,10 +5,13 @@ public class transactions {
 
     //opretter et object array med transaktioner
     ArrayList<transaction> shoppingCart = new ArrayList<transaction>();
+    ArrayList<Double> cashArray = new ArrayList<>();
+    ArrayList<String> dateArray = new ArrayList<>();
+
 
     //funktion som tiljøjer en transaktion
-    public void addTrans(int amount,int id){
-      transaction trans = new transaction(amount,id);
+    public void addTrans(double cashflow,int id){
+      transaction trans = new transaction(cashflow,id);
       shoppingCart.add(trans);
     }
 
@@ -18,6 +21,8 @@ public class transactions {
             System.out.println(trans.toString());
         }
     }
+
+
 
 
     //metode som skriver en fil med en test streng
@@ -33,21 +38,65 @@ public class transactions {
         }
         ud.close(); // luk så alle data skrives til disken
 
-        System.out.println(shoppingCart);
+        //System.out.println(shoppingCart);
         shoppingCart.removeAll(shoppingCart);
-        System.out.println(shoppingCart);
+        //System.out.println(shoppingCart);
     }
 
-    //funktion som printer filen logfile
-    //den skal opdateres så den tilføjer det den læser i transList Arrayet
-    public void readLog() throws IOException {
-        FileReader fil = new FileReader("logfile.txt");
-        BufferedReader ind = new BufferedReader(fil);
 
-        String linje = ind.readLine();
-        while (linje != null) {
-            System.out.println("Læst: " + linje);
-            linje = ind.readLine();
+    //funktion som printer filen logfile
+    public void readLog() throws IOException {
+        FileReader file = new FileReader("logfile.txt");
+        BufferedReader in = new BufferedReader(file);
+
+        String currentLine = in.readLine();
+        while (currentLine != null) {
+            System.out.println("Læst: " + currentLine);
+            currentLine = in.readLine();
+        }
+    }
+
+
+
+    //funktion som læser filen logfile og tager datoerne og balance ændring og putter dem i hvert sit array
+
+    //hvis vi vil sortere efter type log, (udprint af billet, indsætning af penge og tilbagebetaling) kan vi
+    //bare tilføje et ekstra array som læser værdien af id
+    public void logToArray() throws IOException{
+        FileReader file = new FileReader("logfile.txt");
+        BufferedReader in = new BufferedReader(file);
+        String currentLine = in.readLine();
+
+        cashArray.removeAll(cashArray);
+        dateArray.removeAll(dateArray);
+
+        while (currentLine !=null) {
+            String[] data = currentLine.split(",");
+            double inum = Double.valueOf(data[1]);
+            cashArray.add(inum);
+
+            dateArray.add(data[0]);
+            currentLine = in.readLine();
+        }
+    }
+
+
+    public void findPayback() throws IOException{
+        logToArray();
+        for(int i = 0;  i < cashArray.size(); i++){
+            if(cashArray.get(i) < 0){
+                System.out.println(dateArray.get(i) + " " + cashArray.get(i));
+            }
+        }
+    }
+
+
+    public void findPurchase(double x) throws IOException{
+        logToArray();
+        for(int i = 0;  i < cashArray.size(); i++){
+            if(cashArray.get(i) >= x){
+                System.out.println(dateArray.get(i) + " " + cashArray.get(i));
+            }
         }
     }
 }

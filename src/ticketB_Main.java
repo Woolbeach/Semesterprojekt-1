@@ -12,8 +12,6 @@ public class ticketB_Main {
     public static void main(String[] args) {
         Scanner scanObj = new Scanner(System.in);       //Create scanner object
         ticketBoothClass booth = new ticketBoothClass("1234");    //Create Booth object
-        transactions trans = new transactions();
-        booth.addDefaultTickets();                            //Add default tickettypes
 
         int choice = 0;                                 //Menu choice integer
         final int exitProtocol = 6;                     //Menu #, exit menu
@@ -141,7 +139,6 @@ public class ticketB_Main {
                 case 5: {
                     //Admin menu
                     System.out.println("Please enter password:");        //Prompt instructions
-                    scanObj.nextLine();                                 //Remove newLine from earlier
                     String password = scanObj.nextLine();               //Scan for password
 
                     if(booth.accessCode(password)){             //If password is correct
@@ -164,11 +161,7 @@ public class ticketB_Main {
 
                             switch(adminChoice){                    //Switch case begin
                                 case 1:                             //Get sales
-                                    try{
-                                        trans.readLog();
-                                    }catch(IOException e){
-                                        System.err.println("error cant write to log file");
-                                    }
+                                    booth.printCurrentLog();
                                     break;
                                 case 2:                             //New price
                                     System.out.println("Insert new price in DKK");
@@ -202,6 +195,12 @@ public class ticketB_Main {
 
             default:                                //Unknown command
                 System.err.println("Unknown command, please try again");
+            }
+
+            try{
+                booth.writeToLog();
+            }catch(IOException e){
+                System.err.println("error cant write to log file");
             }
         }
     }

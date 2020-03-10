@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ticketBoothClass {
@@ -13,11 +14,13 @@ public class ticketBoothClass {
     //konstruktøren, opretter en ticketbooth med standard kode 1234
     public ticketBoothClass(){
         code = "1234";
+        addDefaultTickets();
     }
 
     //konstruktør med en selvvalgt kode
     public ticketBoothClass(String customcode){
         code = customcode;
+        addDefaultTickets();
     }
 
     //tilføjer et objekt der håndterer transactions
@@ -27,31 +30,7 @@ public class ticketBoothClass {
     ArrayList<ticketType> userBasket = new ArrayList<>();
 
 
-    //billeter
-    //*****************************************************************************************************************
-    //tilføjer billeter til userBasket som er kurven
-    public void addTicketToBasket(int id, int amount){
-        for (int i = 0; i < amount; i++) {
-            userBasket.add(ticketList.get(id-1));
-        }
-    }
-
-    //printer de billeter brugeren har i kruven
-    public void itemsInBasket(){
-        double totalPrice = 0;
-        for (ticketType currentItem : userBasket){
-            System.out.println(currentItem.toString());
-        }
-    }
-
-    //returner prisen på de billeter der er i kurven
-    public double basketPrice(){
-        double totalPrice = 0;
-        for (ticketType currentTicket : userBasket){
-           totalPrice += currentTicket.price;
-        }
-        return totalPrice;
-    }
+    //billet område*****************************************************************************************************************
 
     //her er default-billettyperne
     ticketType adult = new ticketType("Adult", 24, 1);
@@ -70,11 +49,21 @@ public class ticketBoothClass {
         ticketList.add(elderly);
     }
 
+
     //metode til at tilføje en ny billettype
     public void addTicket(String name,int price,int id){
         ticketType newtick = new ticketType(name,price,id);
         ticketList.add(newtick);
     }
+
+
+    //tilføjer billetter til userBasket som er kurven
+    public void addTicketToBasket(int id, int amount){
+        for (int i = 0; i < amount; i++) {
+            userBasket.add(ticketList.get(id-1));
+        }
+    }
+
 
     //funktion som viser de billetyper der er:
     public int printTicketTypes(){
@@ -87,22 +76,43 @@ public class ticketBoothClass {
     }
 
 
-    //funktion som betaler, returner penge og fjerner billerterne fra kurven
+    //printer de billetter brugeren har i kruven
+    public void itemsInBasket(){
+        int ticketNumber = 1;
+        for (ticketType currentItem : userBasket){
+            System.out.println("#"+ticketNumber +" "+ currentItem.basketString());
+            ticketNumber++;
+        }
+    }
+
+
+    //returner prisen på de billetter der er i kurven
+    public double basketPrice(){
+        double totalPrice = 0;
+        for (ticketType currentTicket : userBasket){
+            totalPrice += currentTicket.price;
+        }
+        return totalPrice;
+    }
+
+
+    //funktion som betaler, returner penge og fjerner billetterne fra kurven
     public void payingForTickets(){
         double basketP = basketPrice();
         balance -= basketP;
         moneyMade += basketP;
         for (ticketType currentTicket: userBasket) {
             currentTicket.printTicket();
+            transactionsHandler.addTrans(0,currentTicket.id);
         }
         userBasket.removeAll(userBasket);
         System.out.println("You get " + balance + " DKK in return!");
-        transactionsHandler.addTrans(-balance,-2);
-        balance = 0;
+        if(balance!=0){
+            transactionsHandler.addTrans(-balance,-2);
+            balance = 0;
+        }
     }
     //*****************************************************************************************************************
-
-
 
 
     //function for adding money to balance
@@ -125,15 +135,38 @@ public class ticketBoothClass {
         return testBalance += newBalance;
     }
 
+
+
+    public void writeToLog() throws  IOException{
+        transactionsHandler.writeLog();
+    }
+
+
+
+
+
+    //admin funktioner*****************************************************************************************************************
+
+    //Returns true if accessCode is correct
+    public boolean accessCode(String code1) {
+        return code1.equals(code);
+    }
+
+
     //function for changing the admin code
     public void changeCode(String newcode){
         code = newcode;
     }
 
 
-    //Returns true if accessCode is correct
-    public boolean accessCode(String code1) {
-        return code1.equals(code);
+    public void printCurrentLog(){
+        transactionsHandler.printLog();
     }
+
+    public void readLogFile() throws IOException {
+        transactionsHandler.readLog();
+    }
+
+    //*****************************************************************************************************************
 }
 

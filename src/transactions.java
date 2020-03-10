@@ -38,9 +38,9 @@ public class transactions {
         }
         ud.close(); // luk så alle data skrives til disken
 
-        System.out.println(shoppingCart);
+        //System.out.println(shoppingCart);
         shoppingCart.removeAll(shoppingCart);
-        System.out.println(shoppingCart);
+        //System.out.println(shoppingCart);
     }
 
 
@@ -59,6 +59,9 @@ public class transactions {
 
 
     //funktion som læser filen logfile og tager datoerne og balance ændring og putter dem i hvert sit array
+
+    //hvis vi vil sortere efter type log, (udprint af billet, indsætning af penge og tilbagebetaling) kan vi
+    //bare tilføje et ekstra array som læser værdien af id
     public void logToArray() throws IOException{
         FileReader file = new FileReader("logfile.txt");
         BufferedReader in = new BufferedReader(file);

@@ -103,7 +103,7 @@ public class ticketBoothClass {
         moneyMade += basketP;
         for (ticketType currentTicket: userBasket) {
             currentTicket.printTicket();
-            transactionsHandler.addTrans(0,currentTicket.id);
+            transactionsHandler.addTrans(currentTicket.price,currentTicket.id);
         }
         userBasket.removeAll(userBasket);
         System.out.println("You get " + balance + " DKK in return!");
@@ -187,7 +187,7 @@ public class ticketBoothClass {
 
     public void searchByID(int newid){
         try{  //every time someone does something, it writes to the log
-            transactionsHandler.findPayback();
+            transactionsHandler.findByID(newid);
         }catch(IOException e){
             System.err.println("error cant read log file");
         }

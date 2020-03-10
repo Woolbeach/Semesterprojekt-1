@@ -88,7 +88,7 @@ public class transactions {
         logToArray();
         for(int i = 0;  i < cashArray.size(); i++){
             if(cashArray.get(i) < 0 && idArray.get(i)==-2){
-                System.out.println(dateArray.get(i) + " " + cashArray.get(i));
+                System.out.println(dateArray.get(i) + " " + cashArray.get(i)+" " + idArray.get(i));
             }
         }
     }
@@ -98,8 +98,20 @@ public class transactions {
         logToArray();
         for(int i = 0;  i < cashArray.size(); i++){
             if(cashArray.get(i) >= x){
-                System.out.println(dateArray.get(i) + " " + cashArray.get(i));
+                System.out.println(dateArray.get(i) + " " + cashArray.get(i)+" " + idArray.get(i));
             }
+        }
+    }
+
+
+    public void findByID(int newID) throws  IOException{
+        logToArray();
+        int i = 0;
+        for (Double currentItem: idArray) {
+            if(newID==currentItem){
+                System.out.println(dateArray.get(i) + " " + cashArray.get(i)+" " + idArray.get(i));
+            }
+            i++;
         }
     }
 }

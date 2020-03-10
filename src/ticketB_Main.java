@@ -11,7 +11,7 @@ public class ticketB_Main {
 
     public static void main(String[] args) {
         Scanner scanObj = new Scanner(System.in);       //Create scanner object
-        ticketBoothClass booth = new ticketBoothClass("1234");    //Create Booth object
+        ticketBoothClass booth = new ticketBoothClass("1234");    //Create Booth object with code 1234
 
         int choice = 0;                                 //Menu choice integer
         final int exitProtocol = 6;                     //Menu #, exit menu
@@ -125,7 +125,7 @@ public class ticketB_Main {
                         }
                     }
 
-                    if(checkout){               //XXX change this
+                    if(checkout){
                         if(booth.getBalance() >= booth.basketPrice()){
                             System.out.println("Printing tickets..");
                             booth.payingForTickets();
@@ -161,10 +161,21 @@ public class ticketB_Main {
 
                             switch(adminChoice){                    //Switch case begin
                                 case 1:                             //Get sales
-                                    booth.printCurrentLog();
+                                    try{
+                                        booth.readLogFile();
+                                    }catch(IOException e){
+                                        System.err.println("error cant write to log file");
+                                    }
                                     break;
                                 case 2:                             //New price
-                                    System.out.println("Insert new price in DKK");
+                                    booth.printTicketTypes();
+                                    System.out.println("What ticket do you want to change the price for?");
+                                    int whatticket = scanObj.nextInt();
+                                    System.out.println("To what price?");
+                                    double newprice = scanObj.nextDouble();
+                                    booth.changeTicketPrice(whatticket,newprice);
+                                    System.out.println("Great! Now tickets look like this:");
+                                    booth.printTicketTypes();
                                     break;
                                 case 3:                             //Insert test balance
                                     System.out.println("Insert test balance");

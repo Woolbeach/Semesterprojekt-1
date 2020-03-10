@@ -30,15 +30,15 @@ public class ticketType {
 
     // Prints out a ticket and the price of the ticket
     public void printTicket() {
-            System.out.println("##########B##T#########");
-            System.out.println("# Borgen Trafikselskab #");
-            System.out.println("#\t\t\t\t\t#");
-            System.out.println("#\t\t"+name+"-Billet\t#");
-            System.out.println("#\t\t" + price + " kr.\t#");
-            System.out.println("#\t\t\t\t\t#");
-            System.out.println("##########B##T#########");
-            System.out.println("##########B##T#########");
-            System.out.println();
+        System.out.println("############B##T###########");
+        System.out.println("#   Borgen Trafikselskab  #");
+        System.out.println("#                         #");
+        System.out.println("# Tickettype: "+name+"      #");
+        System.out.println("# Ticket price: " + price + " kr.  #");
+        System.out.println("#                         #");
+        System.out.println("############B##T###########");
+        System.out.println("############B##T###########");
+        System.out.println();
     }
 
     public String basketString(){

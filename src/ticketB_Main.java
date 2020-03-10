@@ -31,7 +31,7 @@ public class ticketB_Main {
                             "#4:\tCheckout\n" +
                             "#5:\tView you basket\n"+
                             "#6:\tAdmin menu\n" +
-                            "#7:\tExit\n"
+                            "#10:\tExit\n"
             );
 
             choice = scanObj.nextInt();                 //Scan for menu choice
@@ -147,9 +147,9 @@ public class ticketB_Main {
 
                     if(booth.accessCode(password)){             //If password is correct
                         System.out.println("Access granted");
+                        boolean adminAccess = true;
 
-
-                        while(adminChoice != 6){        //While admin menu is active
+                        while(adminAccess){        //While admin menu is active
                             //Prompt admin menu
                             System.out.println("Please choose one of the following options");
                             System.out.println(
@@ -158,7 +158,7 @@ public class ticketB_Main {
                                             "#3:  Add new ticket\n" +
                                             "#4:  Insert test balance\n" +
                                             "#5:  Print test-ticket\n" +
-                                            "#6:  Exit Admin Menu"
+                                            "#10:  Exit Admin Menu"
                             );
 
                             adminChoice = scanObj.nextInt();        //Scan for admin menu choice
@@ -201,8 +201,13 @@ public class ticketB_Main {
                                     break;
                                 }
 
-                                case 6:{             //Exit
-                                    System.out.println("Goodbye!");
+                                case 10:{             //Exit
+                                    System.out.println("Goodbye admin!");
+                                    adminAccess = false;
+                                    break;
+                                }
+                                case 7:{
+                                    booth.searchByID(-2);
                                     break;
                                 }
                                 default:  {                          //Unknown command
@@ -217,15 +222,17 @@ public class ticketB_Main {
                     break;
                 }
 
-            case 7:   {
-                //Exit
-                System.out.println("Goodbye!");
-                break;
-            }
 
-            default:                                //Unknown command
-                System.err.println("Unknown command, please try again");
-            }
+                case 10:   {
+                    //Exit
+                    System.out.println("Goodbye!");
+                    runprogram = false;
+                    break;
+                }
+
+                default:                                //Unknown command
+                    System.err.println("Unknown command, please try again");
+                }
 
             try{  //every time someone does something, it writes to the log
                 booth.writeToLog();

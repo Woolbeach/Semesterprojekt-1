@@ -80,7 +80,7 @@ public class ticketBoothClass {
     public void itemsInBasket(){
         int ticketNumber = 1;
         for (ticketType currentItem : userBasket){
-            System.out.println("#"+ticketNumber +" "+ currentItem.basketString());
+            System.out.println("#"+ticketNumber +"    1x"+ currentItem.basketString());
             ticketNumber++;
         }
     }

@@ -166,7 +166,9 @@ public class ticketB_Main {
                                             "#2:\t\tSet price for ticket\n" +
                                             "#3:\t\tAdd new ticket\n" +
                                             "#4:\t\tPrint test-ticket\n" +
-                                            "#5:\t\tSearch in log\n"+
+                                            "#5:\t\tSearch in log by ID type\n"+
+                                            "#6:\t\tSearch in log for moneyinputs within range\n"+
+                                            "#7:\t\tSearch in log for paybacks within range\n"+
                                             "#10:\tExit Admin Menu"
                             );
 
@@ -216,6 +218,23 @@ public class ticketB_Main {
                                     System.out.println("Search by id type:");
                                     int newid = scanObj.nextInt();
                                     booth.searchByID(newid);
+                                    break;
+                                }
+                                case 6:{
+                                    System.out.println("Enter minimum:");
+                                    double min = scanObj.nextDouble();
+                                    System.out.println("Enter maximum:");
+                                    double max = scanObj.nextDouble();
+                                    booth.findMoneyIn_InRange(min,max);
+                                    break;
+                                }
+                                case 7:{
+                                    System.out.println("When entering minimum and maximum, keep in mind the payouts are a negative value.");
+                                    System.out.println("Enter minimum:");
+                                    double min = scanObj.nextDouble();
+                                    System.out.println("Enter maximum:");
+                                    double max = scanObj.nextDouble();
+                                    booth.findPayout_InRange(min,max);
                                     break;
                                 }
 

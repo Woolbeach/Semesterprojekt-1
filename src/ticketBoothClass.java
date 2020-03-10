@@ -196,6 +196,22 @@ public class ticketBoothClass {
         }
     }
 
+    public void findMoneyIn_InRange(double min, double max){
+        try{  //every time someone does something, it writes to the log
+            transactionsHandler.findMoneyIn_InRange(min,max);
+        }catch(IOException e){
+            System.err.println("error cant read log file");
+        }
+    }
+
+    public void findPayout_InRange(double min, double max){
+        try{  //every time someone does something, it writes to the log
+            transactionsHandler.findPayout_InRange(min,max);
+        }catch(IOException e){
+            System.err.println("error cant read log file");
+        }
+    }
+
     //*****************************************************************************************************************
 }
 

@@ -112,4 +112,28 @@ public class transactions {
             i++;
         }
     }
+
+    public void findMoneyIn_InRange(double min, double max) throws IOException{
+        logToArray();
+        int i = 0;
+        for (Double currentItem: idArray) {
+            double money = cashArray.get(i);
+            if(-1==currentItem && money>=min && money <= max){
+                System.out.println(dateArray.get(i) + " " + cashArray.get(i)+" " + idArray.get(i));
+            }
+            i++;
+        }
+    }
+
+    public void findPayout_InRange(double min, double max) throws IOException{
+        logToArray();
+        int i = 0;
+        for (Double currentItem: idArray) {
+            double money = cashArray.get(i);
+            if(-2==currentItem && money>=min && money <= max){
+                System.out.println(dateArray.get(i) + " " + cashArray.get(i)+" " + idArray.get(i));
+            }
+            i++;
+        }
+    }
 }

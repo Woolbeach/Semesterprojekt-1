@@ -7,6 +7,7 @@ public class transactions {
     ArrayList<transaction> shoppingCart = new ArrayList<transaction>();
     ArrayList<Double> cashArray = new ArrayList<>();
     ArrayList<String> dateArray = new ArrayList<>();
+    ArrayList<Double> idArray = new ArrayList<>();
 
 
     //funktion som tiljøjer en transaktion
@@ -69,13 +70,15 @@ public class transactions {
 
         cashArray.removeAll(cashArray);
         dateArray.removeAll(dateArray);
+        idArray.removeAll(idArray);
 
         while (currentLine !=null) {
             String[] data = currentLine.split(",");
             double inum = Double.valueOf(data[1]);
             cashArray.add(inum);
-
             dateArray.add(data[0]);
+            double iid = Integer.valueOf(data[2]);
+            idArray.add(iid);
             currentLine = in.readLine();
         }
     }
@@ -84,7 +87,7 @@ public class transactions {
     public void findPayback() throws IOException{
         logToArray();
         for(int i = 0;  i < cashArray.size(); i++){
-            if(cashArray.get(i) < 0){
+            if(cashArray.get(i) < 0 && idArray.get(i)==-2){
                 System.out.println(dateArray.get(i) + " " + cashArray.get(i));
             }
         }

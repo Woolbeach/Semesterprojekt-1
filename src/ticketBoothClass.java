@@ -184,6 +184,15 @@ public class ticketBoothClass {
         }
     }
 
+
+    public void searchByID(int newid){
+        try{  //every time someone does something, it writes to the log
+            transactionsHandler.findPayback();
+        }catch(IOException e){
+            System.err.println("error cant read log file");
+        }
+    }
+
     //*****************************************************************************************************************
 }
 

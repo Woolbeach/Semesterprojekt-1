@@ -207,7 +207,10 @@ public class ticketB_Main {
                                     break;
                                 }
                                 case 7:{
-                                    booth.searchByID(-2);
+                                    System.out.println("ID types: \n-2 = payback\n-1 = money input\n>0 = what type of ticket");
+                                    System.out.println("Search by id type:");
+                                    int newid = scanObj.nextInt();
+                                    booth.searchByID(newid);
                                     break;
                                 }
                                 default:  {                          //Unknown command

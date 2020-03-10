@@ -176,6 +176,14 @@ public class ticketBoothClass {
         }
     }
 
+    public void printTicketByID(int id){
+        for (ticketType currentTicket : ticketList){
+            if(id == currentTicket.id){
+                currentTicket.printTicket();
+            }
+        }
+    }
+
     //*****************************************************************************************************************
 }
 

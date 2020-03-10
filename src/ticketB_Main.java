@@ -100,9 +100,6 @@ public class ticketB_Main {
                     double moneyin = scanObj.nextDouble();
                     scanObj.nextLine();
                     booth.addBalance(moneyin);
-                    if(moneyin>0){
-                        trans.addTrans(moneyin,-1); //-1 id for adding money
-                    }
                     System.out.println("Your balance is now: "+booth.getBalance()+" DKK");
                     break;
                 }
@@ -155,7 +152,7 @@ public class ticketB_Main {
                             //Prompt admin menu
                             System.out.println("Please choose one of the following options");
                             System.out.println(
-                                            "#1:  Read log and logfile\n" +
+                                            "#1:  Read log\n" +
                                             "#2:  Set price for ticket\n" +
                                             "#3:  Add new ticket\n" +
                                             "#4:  Insert test balance\n" +
@@ -181,7 +178,7 @@ public class ticketB_Main {
                                     testBalance += booth.setTestBalance(scanObj.nextInt());
                                     break;
                                 case 4:                             //Print test ticket
-                                    booth.printTestTicket();
+                                    //booth.printTestTicket();
                                     break;
                                 case adminExitProtocol:             //Exit
                                     System.out.println("Goodbye!");

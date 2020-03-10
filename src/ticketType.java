@@ -32,10 +32,10 @@ public class ticketType {
     public void printTicket() {
             System.out.println("##########B##T#########");
             System.out.println("# Borgen Trafikselskab #");
-            System.out.println("#\t\t\t\t#");
-            System.out.println("#\t"+name+"-Billet\t#");
-            System.out.println("#\t" + price + " kr.\t#");
-            System.out.println("#\t\t\t\t#");
+            System.out.println("#\t\t\t\t\t#");
+            System.out.println("#\t\t"+name+"-Billet\t#");
+            System.out.println("#\t\t" + price + " kr.\t#");
+            System.out.println("#\t\t\t\t\t#");
             System.out.println("##########B##T#########");
             System.out.println("##########B##T#########");
             System.out.println();

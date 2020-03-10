@@ -1,8 +1,7 @@
 import java.util.ArrayList;
 
 public class ticketBoothClass {
-    private double price;
-    private double balance;
+    public double balance;
     private double testBalance;
 
     //variabler en ticketBooth skal have:
@@ -10,19 +9,34 @@ public class ticketBoothClass {
     public int ticketSales;
     public double moneyMade;
 
+
+    //konstruktøren, opretter en ticketbooth med standard kode 1234
+    public ticketBoothClass(){
+        code = "1234";
+    }
+
+    //konstruktør med en selvvalgt kode
+    public ticketBoothClass(String customcode){
+        code = customcode;
+    }
+
     //tilføjer et objekt der håndterer transactions
     transactions transactionsHandler = new transactions();
 
+    //laver en kurv hvor brugeren kan putte sin ønskede billeter i
     ArrayList<ticketType> userBasket = new ArrayList<>();
 
-    //under change
+
+    //billeter
+    //*****************************************************************************************************************
+    //tilføjer billeter til userBasket som er kurven
     public void addTicketToBasket(int id, int amount){
         for (int i = 0; i < amount; i++) {
             userBasket.add(ticketList.get(id-1));
         }
     }
 
-    //not working
+    //printer de billeter brugeren har i kruven
     public void itemsInBasket(){
         double totalPrice = 0;
         for (ticketType currentItem : userBasket){
@@ -30,7 +44,7 @@ public class ticketBoothClass {
         }
     }
 
-    //not working
+    //returner prisen på de billeter der er i kurven
     public double basketPrice(){
         double totalPrice = 0;
         for (ticketType currentTicket : userBasket){
@@ -62,19 +76,6 @@ public class ticketBoothClass {
         ticketList.add(newtick);
     }
 
-
-
-    //konstruktøren, opretter en ticketbooth med standard kode 1234
-    public ticketBoothClass(){
-        code = "1234";
-    }
-
-    //konstruktør med en selvvalgt kode
-    public ticketBoothClass(String customcode){
-        code = customcode;
-    }
-
-
     //funktion som viser de billetyper der er:
     public int printTicketTypes(){
         int amount = 0;
@@ -86,39 +87,32 @@ public class ticketBoothClass {
     }
 
 
+    //funktion som betaler, returner penge og fjerner billerterne fra kurven
     public void payingForTickets(){
-        balance -= basketPrice();
+        double basketP = basketPrice();
+        balance -= basketP;
+        moneyMade += basketP;
         for (ticketType currentTicket: userBasket) {
             currentTicket.printTicket();
         }
         userBasket.removeAll(userBasket);
+        System.out.println("You get " + balance + " DKK in return!");
+        transactionsHandler.addTrans(-balance,-2);
+        balance = 0;
     }
+    //*****************************************************************************************************************
 
 
-    //Prints out a test ticket
-    public void printTestTicket() {
-        if(testBalance >= price){
-            testBalance+=-price;
-            System.out.println("##########B##T#########");
-            System.out.println("# Borgen Trafikselskab #");
-            System.out.println("#                     #");
-            System.out.println("#        Billet       #");
-            System.out.println("#        " + price + " kr   .       #");
-            System.out.println("#                     #");
-            System.out.println("# Du har "+ testBalance + " kr. tilbage.   #");
-            System.out.println("##########B##T#########");
-            System.out.println("##########B##T#########");
-            System.out.println();
-        }else{
-            System.out.println("Not enough balance");
-        }
-    }
 
 
     //function for adding money to balance
-    public double addBalance(double moneyin){
-        if (moneyin > 0) {balance += moneyin; return moneyin;}
-        else {System.out.println("Invalid amount!"); return 0;}
+    public void addBalance(double moneyin){
+        if (moneyin > 0) {
+            transactionsHandler.addTrans(moneyin,-1);
+            balance += moneyin;
+        } else {
+            System.out.println("Invalid amount!");
+        }
     }
 
     //Returns current balance value

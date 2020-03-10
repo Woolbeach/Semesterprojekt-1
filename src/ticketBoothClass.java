@@ -13,34 +13,28 @@ public class ticketBoothClass {
     //tilføjer et objekt der håndterer transactions
     transactions transactionsHandler = new transactions();
 
-    ArrayList<basketItem> userBasket = new ArrayList<>();
+    ArrayList<ticketType> userBasket = new ArrayList<>();
 
+    //under change
     public void addTicketToBasket(int id, int amount){
-        basketItem ticket = new basketItem(id,amount);
-        userBasket.add(ticket);
+        for (int i = 0; i < amount; i++) {
+            userBasket.add(ticketList.get(id-1));
+        }
     }
 
+    //not working
     public void itemsInBasket(){
         double totalPrice = 0;
-        for (basketItem currentItem : userBasket){
-            for(ticketType currentTicket : ticketList){
-                if(currentTicket.id == currentItem.id){
-                    System.out.println(currentItem.amount+"x "+currentTicket.basketString());
-                    totalPrice += currentItem.amount * currentTicket.price;
-                }
-            }
+        for (ticketType currentItem : userBasket){
+            System.out.println(currentItem.toString());
         }
-        System.out.println("Total price: "+totalPrice+"DKK");
     }
 
+    //not working
     public double basketPrice(){
         double totalPrice = 0;
-        for (basketItem currentItem : userBasket){
-            for(ticketType currentTicket : ticketList){
-                if(currentTicket.id == currentItem.id){
-                    totalPrice += currentItem.amount * currentTicket.price;
-                }
-            }
+        for (ticketType currentTicket : userBasket){
+           totalPrice += currentTicket.price;
         }
         return totalPrice;
     }
@@ -82,10 +76,22 @@ public class ticketBoothClass {
 
 
     //funktion som viser de billetyper der er:
-    public void printTicketTypes(){
+    public int printTicketTypes(){
+        int amount = 0;
         for (ticketType ticket : ticketList){
+            amount++;
             System.out.println(ticket.toString());
         }
+        return amount;
+    }
+
+
+    public void payingForTickets(){
+        balance -= basketPrice();
+        for (ticketType currentTicket: userBasket) {
+            currentTicket.printTicket();
+        }
+        userBasket.removeAll(userBasket);
     }
 
 
@@ -123,6 +129,11 @@ public class ticketBoothClass {
     //Returns a test balance
     public double setTestBalance(int newBalance){
         return testBalance += newBalance;
+    }
+
+    //function for changing the admin code
+    public void changeCode(String newcode){
+        code = newcode;
     }
 
 

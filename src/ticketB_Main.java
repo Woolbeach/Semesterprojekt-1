@@ -45,14 +45,17 @@ public class ticketB_Main {
                     buyTickets:
                     while(true){
                         System.out.println("What type of ticket do you want?");
-                        booth.printTicketTypes();
+                        int tickettypes = booth.printTicketTypes();
                         int wantedTicket = scanObj.nextInt();
+                        if (wantedTicket > tickettypes || wantedTicket < 1){
+                            System.out.println("Not a valid choice!");
+                            break buyTickets;
+                        }
                         System.out.println("How many?:");
                         int ticketAmount = scanObj.nextInt();
                         booth.addTicketToBasket(wantedTicket,ticketAmount);
 
-                        System.out.println("You have these tickets in your basket:");
-                        booth.itemsInBasket();
+
 
                         //keep adding tickets until No is pressed/type
                         System.out.println("Add more tickets? Y/N");
@@ -92,18 +95,22 @@ public class ticketB_Main {
                 }
 
                 case 3: {
-                    System.out.println("Your current balance is: "+booth.getBalance() + "DKK");
+                    System.out.println("Your current balance is: "+booth.getBalance() + " DKK");
                     System.out.println("Insert money: ");
-                    int moneyin = scanObj.nextInt();
+                    double moneyin = scanObj.nextDouble();
                     scanObj.nextLine();
                     booth.addBalance(moneyin);
                     if(moneyin>0){
                         trans.addTrans(moneyin,-1); //-1 id for adding money
                     }
+                    System.out.println("Your balance is now: "+booth.getBalance()+" DKK");
                     break;
                 }
 
                 case 4:{
+                    System.out.println("You have these tickets in your basket:");
+                    booth.itemsInBasket();
+                    System.out.println("They will cost: " + booth.basketPrice() + " DKK");
                     System.out.println("Are you sure you want to check out? Y/N");
                     boolean checkout = false;
                     outer:
@@ -124,8 +131,14 @@ public class ticketB_Main {
                     }
 
                     if(checkout){               //XXX change this
-                        System.out.println("Now you will get tickes! if you pay");
+                        if(booth.getBalance() >= booth.basketPrice()){
+                            System.out.println("Printing tickets..");
+                            booth.payingForTickets();
+                        } else {
+                            System.out.println("You dont have enough money, please add to balance!");
+                        }
                     }
+                    break;
                 }
 
                 case 5: {

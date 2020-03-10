@@ -29,8 +29,7 @@ public class ticketType {
     }
 
     // Prints out a ticket and the price of the ticket
-    public void printTicket(int balance) {
-        if(balance >= price){
+    public void printTicket() {
             System.out.println("##########B##T#########");
             System.out.println("# Borgen Trafikselskab #");
             System.out.println("#\t\t\t\t#");
@@ -40,9 +39,6 @@ public class ticketType {
             System.out.println("##########B##T#########");
             System.out.println("##########B##T#########");
             System.out.println();
-        }else{
-            System.out.println("Not enough balance");
-        }
     }
 
     public String basketString(){

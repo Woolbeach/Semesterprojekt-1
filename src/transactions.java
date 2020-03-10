@@ -10,8 +10,8 @@ public class transactions {
 
 
     //funktion som tiljøjer en transaktion
-    public void addTrans(int amount,int id){
-      transaction trans = new transaction(amount,id);
+    public void addTrans(double cashflow,int id){
+      transaction trans = new transaction(cashflow,id);
       shoppingCart.add(trans);
     }
 

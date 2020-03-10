@@ -11,12 +11,12 @@ public class ticketB_Main {
 
     public static void main(String[] args) {
         Scanner scanObj = new Scanner(System.in);       //Create scanner object
-        ticketBoothClass booth = new ticketBoothClass("1234");    //Create Booth object
+        ticketBoothClass booth = new ticketBoothClass("1234");    //Create Booth object with code 1234
 
         int choice = 0;                                 //Menu choice integer
         final int exitProtocol = 6;                     //Menu #, exit menu
         int adminChoice = 0;                            //Admin menu choice integer
-        final int adminExitProtocol = 5;                //Menu #, exit admin menu
+        final int adminExitProtocol = 6;                //Menu #, exit admin menu
         double salesWithCurrentPrice;                   //Save sales with the current price
         double testBalance = 0;                         //initialize variable
 
@@ -125,7 +125,7 @@ public class ticketB_Main {
                         }
                     }
 
-                    if(checkout){               //XXX change this
+                    if(checkout){
                         if(booth.getBalance() >= booth.basketPrice()){
                             System.out.println("Printing tickets..");
                             booth.payingForTickets();
@@ -154,30 +154,56 @@ public class ticketB_Main {
                                             "#3:  Add new ticket\n" +
                                             "#4:  Insert test balance\n" +
                                             "#5:  Print test-ticket\n" +
-                                            "#" + adminExitProtocol + "  Exit"
+                                            "#" + adminExitProtocol + ":  Exit Admin Menu"
                             );
 
                             adminChoice = scanObj.nextInt();        //Scan for admin menu choice
 
                             switch(adminChoice){                    //Switch case begin
-                                case 1:                             //Get sales
-                                    booth.printCurrentLog();
+                                case 1: {                            //Get sales
+                                    try {
+                                        booth.readLogFile();
+                                    } catch (IOException e) {
+                                        System.err.println("error cant write to log file");
+                                    }
                                     break;
-                                case 2:                             //New price
-                                    System.out.println("Insert new price in DKK");
+                                }
+                                case 2: {                           //New price
+                                    booth.printTicketTypes();
+                                    System.out.println("What ticket do you want to change the price for?");
+                                    int whatticket = scanObj.nextInt();
+                                    System.out.println("To what price?");
+                                    double newprice = scanObj.nextDouble();
+                                    booth.changeTicketPrice(whatticket, newprice);
+                                    System.out.println("Great! Now tickets look like this:");
+                                    booth.printTicketTypes();
                                     break;
-                                case 3:                             //Insert test balance
+                                }
+                                case 3: {                         //Insert test balance
                                     System.out.println("Insert test balance");
                                     testBalance += booth.setTestBalance(scanObj.nextInt());
                                     break;
-                                case 4:                             //Print test ticket
+                                }
+                                case 4: {                          //Print test ticket
                                     //booth.printTestTicket();
                                     break;
-                                case adminExitProtocol:             //Exit
+                                }
+                                case 5:{
+                                    System.out.println("These are the available tickets:");
+                                    booth.printTicketTypes();
+                                    System.out.println("What ticket do you want to print?");
+                                    int ticketID = scanObj.nextInt();
+                                    booth.printTicketByID(ticketID);
+                                    break;
+                                }
+
+                                case adminExitProtocol:{             //Exit
                                     System.out.println("Goodbye!");
                                     break;
-                                default:                            //Unknown command
+                                }
+                                default:  {                          //Unknown command
                                     System.err.println("Unknown command, please try again");
+                                }
                             }
                         }
                         adminChoice = 0;                            //reset adminChoice
@@ -197,7 +223,7 @@ public class ticketB_Main {
                 System.err.println("Unknown command, please try again");
             }
 
-            try{
+            try{  //every time someone does something, it writes to the log
                 booth.writeToLog();
             }catch(IOException e){
                 System.err.println("error cant write to log file");

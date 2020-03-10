@@ -167,6 +167,23 @@ public class ticketBoothClass {
         transactionsHandler.readLog();
     }
 
+
+    public void changeTicketPrice(int ticketID, double newPrice){
+        for (ticketType currentTicket: ticketList) {
+            if(ticketID == currentTicket.id){
+                currentTicket.price = newPrice;
+            }
+        }
+    }
+
+    public void printTicketByID(int id){
+        for (ticketType currentTicket : ticketList){
+            if(id == currentTicket.id){
+                currentTicket.printTicket();
+            }
+        }
+    }
+
     //*****************************************************************************************************************
 }
 

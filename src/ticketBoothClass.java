@@ -50,8 +50,10 @@ public class ticketBoothClass {
 
 
     //metode til at tilføje en ny billettype
-    public void addTicket(String name,int price,int id){
-        ticketType newtick = new ticketType(name,price,id);
+    public void addTicket(String name,double price){
+        int ticketListSize = ticketList.size()+1;
+        System.out.println("listsize:"+ticketListSize);
+        ticketType newtick = new ticketType(name,price,ticketListSize);
         ticketList.add(newtick);
     }
 
@@ -86,7 +88,9 @@ public class ticketBoothClass {
 
     // fjerner n billetter
     public void removeItemFromBasket(int index){
-        userBasket.remove(index-1);         // -1 fordi vi starter i 0
+        if(userBasket.size()>=index && index > 0){
+            userBasket.remove(index-1);         // -1 fordi vi starter i 0
+        }
     }
 
     //returner prisen på de billetter der er i kurven
@@ -161,10 +165,6 @@ public class ticketBoothClass {
         code = newcode;
     }
 
-
-    public void printCurrentLog(){
-        transactionsHandler.printLog();
-    }
 
     public void readLogFile() throws IOException {
         transactionsHandler.readLog();

@@ -23,14 +23,15 @@ public class ticketB_Main {
         while (runprogram) {                //While menu choice is active
 
             //Prompt menu
-            System.out.println("Please choose one of the following options");
+            System.out.println("\n\nPlease choose one of the following options");
             System.out.println(
                             "#1:\tBuy ticket\n" +
                             "#2:\tTicket prices\n" +
                             "#3:\tAdd balance\n"+
-                            "#4:\tCheckout\n" +
-                            "#5:\tView you basket\n"+
-                            "#6:\tAdmin menu\n" +
+                            "#4:\tView your basket\n"+
+                            "#5:\tCheckout\n" +
+                            "#6:\tRemove item from basket\n"+
+                            "#7:\tAdmin menu\n" +
                             "#10:\tExit\n"
             );
 
@@ -54,7 +55,7 @@ public class ticketB_Main {
 
 
 
-                        //keep adding tickets until No is pressed/type
+                        //keep adding tickets until No is pressed/typed
                         System.out.println("Add more tickets? Y/N");
                         addmore:
                         while (true){
@@ -75,8 +76,6 @@ public class ticketB_Main {
                     }
 
 
-
-                    //trans.addTrans(20,1);
                     /*
                     try{
                         trans.writeLog();
@@ -101,8 +100,14 @@ public class ticketB_Main {
                     System.out.println("Your balance is now: "+booth.getBalance()+" DKK");
                     break;
                 }
-
                 case 4:{
+                    System.out.println("You have these tickets in your basket:");
+                    booth.itemsInBasket();
+                    System.out.println("Your balance is: " + booth.getBalance() + " DKK");
+                    break;
+                }
+
+                case 5:{
                     System.out.println("You have these tickets in your basket:");
                     booth.itemsInBasket();
                     System.out.println("They will cost: " + booth.basketPrice() + " DKK");
@@ -137,13 +142,14 @@ public class ticketB_Main {
                     break;
                 }
                 //fjerner billetter fra kurven
-                case 5:{
+                case 6:{
                     System.out.println("Please write what ticket you want discarded from the basket");
                     booth.itemsInBasket();
                     booth.removeItemFromBasket(scanObj.nextInt());
+                    break;
                 }
 
-                case 6: {
+                case 7: {
                     //Admin menu
                     System.out.println("Please enter password:");        //Prompt instructions
                     String password = scanObj.nextLine();               //Scan for password
@@ -156,12 +162,12 @@ public class ticketB_Main {
                             //Prompt admin menu
                             System.out.println("Please choose one of the following options");
                             System.out.println(
-                                            "#1:  Read log\n" +
-                                            "#2:  Set price for ticket\n" +
-                                            "#3:  Add new ticket\n" +
-                                            "#4:  Insert test balance\n" +
-                                            "#5:  Print test-ticket\n" +
-                                            "#10:  Exit Admin Menu"
+                                            "#1:\t\tRead log\n" +
+                                            "#2:\t\tSet price for ticket\n" +
+                                            "#3:\t\tAdd new ticket\n" +
+                                            "#4:\t\tPrint test-ticket\n" +
+                                            "#5:\t\tSearch in log\n"+
+                                            "#10:\tExit Admin Menu"
                             );
 
                             adminChoice = scanObj.nextInt();        //Scan for admin menu choice
@@ -186,21 +192,30 @@ public class ticketB_Main {
                                     booth.printTicketTypes();
                                     break;
                                 }
-                                case 3: {                         //Insert test balance
-                                    System.out.println("Insert test balance");
-                                    testBalance += booth.setTestBalance(scanObj.nextInt());
+                                case 3:{
+                                    System.out.println("Creating new ticket:\nPlease enter a name:");
+                                    scanObj.nextLine();
+                                    String nameForTicket = scanObj.nextLine();
+                                    System.out.println("Now enter a price for this ticket:");
+                                    double priceForTicket = scanObj.nextDouble();
+                                    booth.addTicket(nameForTicket,priceForTicket);
+                                    System.out.println("These are now the available tickets:");
+                                    booth.printTicketTypes();
                                     break;
                                 }
-                                case 4: {                          //Print test ticket
-                                    //booth.printTestTicket();
-                                    break;
-                                }
-                                case 5:{
+                                case 4:{
                                     System.out.println("These are the available tickets:");
                                     booth.printTicketTypes();
                                     System.out.println("What ticket do you want to print?");
                                     int ticketID = scanObj.nextInt();
                                     booth.printTicketByID(ticketID);
+                                    break;
+                                }
+                                case 5:{
+                                    System.out.println("ID types: \n-2 = payback\n-1 = money input\n>0 = what type of ticket");
+                                    System.out.println("Search by id type:");
+                                    int newid = scanObj.nextInt();
+                                    booth.searchByID(newid);
                                     break;
                                 }
 
@@ -209,13 +224,7 @@ public class ticketB_Main {
                                     adminAccess = false;
                                     break;
                                 }
-                                case 7:{
-                                    System.out.println("ID types: \n-2 = payback\n-1 = money input\n>0 = what type of ticket");
-                                    System.out.println("Search by id type:");
-                                    int newid = scanObj.nextInt();
-                                    booth.searchByID(newid);
-                                    break;
-                                }
+
                                 default:  {                          //Unknown command
                                     System.err.println("Unknown command, please try again");
                                 }

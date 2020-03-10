@@ -58,6 +58,7 @@ public class ticketB_Main {
                         System.out.println("Add more tickets? Y/N");
                         addmore:
                         while (true){
+
                             switch (scanObj.next().toLowerCase()){
                                 case "y":{
                                     break addmore;
@@ -135,9 +136,11 @@ public class ticketB_Main {
                     }
                     break;
                 }
-
+                //fjerner billetter fra kurven
                 case 5:{
-
+                    System.out.println("Please write what ticket you want discarded from the basket");
+                    booth.itemsInBasket();
+                    booth.removeItemFromBasket(scanObj.nextInt());
                 }
 
                 case 6: {

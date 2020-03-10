@@ -37,7 +37,6 @@ public class ticketBoothClass {
     ticketType child = new ticketType("Child", 12, 2);
     ticketType bicycle = new ticketType("Bike", 18, 3);
     ticketType elderly = new ticketType("Elderly", 12, 4);
-
     //de bliver tilføjet i et array, så kan man altid tilføje flere typer
     ArrayList<ticketType> ticketList = new ArrayList<ticketType>();
 
@@ -85,6 +84,10 @@ public class ticketBoothClass {
         }
     }
 
+    // fjerner n billetter
+    public void removeItemFromBasket(int index){
+        userBasket.remove(index-1);         // -1 fordi vi starter i 0
+    }
 
     //returner prisen på de billetter der er i kurven
     public double basketPrice(){

@@ -93,6 +93,10 @@ public class ticketBoothClass {
         }
     }
 
+    public void clearBasket(){
+        userBasket.removeAll(userBasket);
+    }
+
     //returner prisen på de billetter der er i kurven
     public double basketPrice(){
         double totalPrice = 0;
@@ -163,6 +167,7 @@ public class ticketBoothClass {
     //function for changing the admin code
     public void changeCode(String newcode){
         code = newcode;
+        System.out.println("Password has changed to: "+code);
     }
 
 
@@ -185,6 +190,12 @@ public class ticketBoothClass {
                 currentTicket.printTicket();
             }
         }
+    }
+
+
+    public double seeMoneyMade(){
+        System.out.println("This machine has made: "+moneyMade+" DKK");
+        return moneyMade;
     }
 
 

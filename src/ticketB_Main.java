@@ -25,13 +25,15 @@ public class ticketB_Main {
             //Prompt menu
             System.out.println("\n\nPlease choose one of the following options");
             System.out.println(
-                            "#1:\tBuy ticket\n" +
-                            "#2:\tTicket prices\n" +
-                            "#3:\tAdd balance\n"+
-                            "#4:\tView your basket\n"+
-                            "#5:\tCheckout\n" +
-                            "#6:\tRemove item from basket\n"+
-                            "#7:\tAdmin menu\n" +
+                            "#1: \tBuy ticket\n" +
+                            "#2: \tTicket prices\n" +
+                            "#3: \tAdd/View balance\n"+
+                            "#4: \tView your basket\n"+
+                            "#5: \tRemove item from basket\n"+
+                            "#6: \tClear basket\n"+
+                            "#7: \tCheckout\n" +
+
+                            "#8: \tAdmin menu\n" +
                             "#10:\tExit\n"
             );
 
@@ -39,7 +41,7 @@ public class ticketB_Main {
             scanObj.nextLine();
 
             switch (choice) {                           //Switch case begin
-                case 1:{
+                case 1:{ //buy ticket case
                     buyTickets:
                     while(true){
                         System.out.println("What type of ticket do you want?");
@@ -91,7 +93,7 @@ public class ticketB_Main {
                     break;
                 }
 
-                case 3: {
+                case 3: { //view balance case
                     System.out.println("Your current balance is: "+booth.getBalance() + " DKK");
                     System.out.println("Insert money: ");
                     double moneyin = scanObj.nextDouble();
@@ -100,14 +102,14 @@ public class ticketB_Main {
                     System.out.println("Your balance is now: "+booth.getBalance()+" DKK");
                     break;
                 }
-                case 4:{
+                case 4:{ //view basket
                     System.out.println("You have these tickets in your basket:");
                     booth.itemsInBasket();
                     System.out.println("Your balance is: " + booth.getBalance() + " DKK");
                     break;
                 }
 
-                case 5:{
+                case 7:{ //checkout case
                     System.out.println("You have these tickets in your basket:");
                     booth.itemsInBasket();
                     System.out.println("They will cost: " + booth.basketPrice() + " DKK");
@@ -142,14 +144,20 @@ public class ticketB_Main {
                     break;
                 }
                 //fjerner billetter fra kurven
-                case 6:{
+                case 5:{
                     System.out.println("Please write what ticket you want discarded from the basket");
                     booth.itemsInBasket();
                     booth.removeItemFromBasket(scanObj.nextInt());
                     break;
                 }
 
-                case 7: {
+                case 6:{ //clear basket case
+                    booth.clearBasket();
+                    System.out.println("Basket has been cleared.");
+                    break;
+                }
+
+                case 8: {
                     //Admin menu
                     System.out.println("Please enter password:");        //Prompt instructions
                     String password = scanObj.nextLine();               //Scan for password
@@ -160,15 +168,17 @@ public class ticketB_Main {
 
                         while(adminAccess){        //While admin menu is active
                             //Prompt admin menu
-                            System.out.println("Please choose one of the following options");
+                            System.out.println("\n\nPlease choose one of the following options");
                             System.out.println(
-                                            "#1:\t\tRead log\n" +
-                                            "#2:\t\tSet price for ticket\n" +
-                                            "#3:\t\tAdd new ticket\n" +
-                                            "#4:\t\tPrint test-ticket\n" +
-                                            "#5:\t\tSearch in log by ID type\n"+
-                                            "#6:\t\tSearch in log for moneyinputs within range\n"+
-                                            "#7:\t\tSearch in log for paybacks within range\n"+
+                                            "#1: \tRead log\n" +
+                                            "#2: \tSet price for ticket\n" +
+                                            "#3: \tAdd new ticket\n" +
+                                            "#4: \tPrint test-ticket\n" +
+                                            "#5: \tSearch in log by ID type\n"+
+                                            "#6: \tSearch in log for moneyinputs within range\n"+
+                                            "#7: \tSearch in log for paybacks within range\n"+
+                                            "#8: \tSee how much the ticketbooth has made\n"+
+                                            "#9: \tChange admin password\n"+
                                             "#10:\tExit Admin Menu"
                             );
 
@@ -238,6 +248,19 @@ public class ticketB_Main {
                                     break;
                                 }
 
+                                case 8:{
+                                    booth.seeMoneyMade();
+                                    break;
+                                }
+
+                                case 9:{
+                                    scanObj.nextLine();
+                                    System.out.println("Please type the new password:");
+                                    String newcode = scanObj.nextLine();
+                                    booth.changeCode(newcode);
+                                    break;
+                                }
+
                                 case 10:{             //Exit
                                     System.out.println("Goodbye admin!");
                                     adminAccess = false;
@@ -281,20 +304,24 @@ public class ticketB_Main {
 Krav fra opgaveformuleringen:
 K1) Når en automat opstilles på en station skal installatøren kunne angive prisen per billet. TJEK
 K2) Automaten skal kunne fortælle kunden, hvad en billet koster. TJEK
-K3) Automaten skal kunne udskrive en billet mærket med BT's logo.
-K4) Automaten vil til enhver tid kunne vise kunden balancen, dvs hvor mange penge kunden har puttet i automaten.
+K3) Automaten skal kunne udskrive en billet mærket med BT's logo. TJEK
+K4) Automaten vil til enhver tid kunne vise kunden balancen, dvs hvor mange penge kunden har puttet i automaten. TJEK
 K5) Ved opstilling kan installatøren angive en startbalance, sådan at installatøren kan udskrive en
 eller flere test-billetter uden at skulle putte penge i automaten. SEMI-TJEK
 K6) Hver nat skal en medarbejder med en særlig kode kunne aflæse det samlede salg (beløb i kroner)
-og justere billetprisen (i tilfælde af prisstigninger).
+og justere billetprisen (i tilfælde af prisstigninger). TJEK
 K7) EGEN KRAV
+    Den skal kunne lave sine egne billettyper TJEK
 K8) EGEN KRAV
+    Man skal kunne ændre admin login TJEK
 K9) EGEN KRAV
+    Maskinen skal gemme en fil med alle de handlinger der sker TJEK
 K10) Automaten skal logge alle handlinger, såsom indkast af penge, udskrivning af billet og udbetaling af returbeløb TJEK
 K11) Når montøren er logget ind skal automaten kunne udskrive en log med alle de transaktioner der har været siden sidst. SEMI-TJEK
 K12) Automatens transaktionslog skal kunne filtreres efter tidspunkt, handling og beløb. SEMI-TJEK
 f.eks automat.findTilbagebetalinger(), automat.indkastedeBeløbOverKr(500),
 K13) Automaten skal kunne håndtere nogle forskellige billettyper. TJEK
 K14) EGEN KRAV
+    Automaten skal kunne ændre de forskellige billeters priser TJEK
  */
 

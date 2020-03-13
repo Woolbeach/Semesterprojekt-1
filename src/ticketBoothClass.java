@@ -170,12 +170,12 @@ public class ticketBoothClass {
         System.out.println("Password has changed to: "+code);
     }
 
-
+    //reads logfile and shows it to admin
     public void readLogFile() throws IOException {
         transactionsHandler.readLog();
     }
 
-
+    //change price of given ticket id
     public void changeTicketPrice(int ticketID, double newPrice){
         for (ticketType currentTicket: ticketList) {
             if(ticketID == currentTicket.id){
@@ -183,7 +183,7 @@ public class ticketBoothClass {
             }
         }
     }
-
+    //print ticket of given ticket id
     public void printTicketByID(int id){
         for (ticketType currentTicket : ticketList){
             if(id == currentTicket.id){
@@ -192,13 +192,13 @@ public class ticketBoothClass {
         }
     }
 
-
+    //prints total money made
     public double seeMoneyMade(){
         System.out.println("This machine has made: "+moneyMade+" DKK");
         return moneyMade;
     }
 
-
+    //search in log for given id
     public void searchByID(int newid){
         try{  //every time someone does something, it writes to the log
             transactionsHandler.findByID(newid);

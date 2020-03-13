@@ -20,7 +20,7 @@ public class ticketB_Main {
 
 
         boolean runprogram = true;
-        while (runprogram) {                //While menu choice is active
+        while (runprogram) {                //While bool is true is active
 
             //Prompt menu
             System.out.println("\n\nPlease choose one of the following options");
@@ -44,25 +44,25 @@ public class ticketB_Main {
                 case 1:{ //buy ticket case
                     buyTickets:
                     while(true){
-                        System.out.println("What type of ticket do you want?");
-                        int tickettypes = booth.printTicketTypes();
-                        int wantedTicket = scanObj.nextInt();
-                        if (wantedTicket > tickettypes || wantedTicket < 1){
+                        System.out.println("What type of ticket do you want?");     //prompt instructions
+                        int tickettypes = booth.printTicketTypes();                 //read tickettype
+                        int wantedTicket = scanObj.nextInt();                       //scans
+                        if (wantedTicket > tickettypes || wantedTicket < 1){        //if ticket is not valid
                             System.out.println("Not a valid choice!");
                             break buyTickets;
                         }
-                        System.out.println("How many?:");
-                        int ticketAmount = scanObj.nextInt();
-                        booth.addTicketToBasket(wantedTicket,ticketAmount);
+                        System.out.println("How many?:");                           //prompt instructions
+                        int ticketAmount = scanObj.nextInt();                       //scan
+                        booth.addTicketToBasket(wantedTicket,ticketAmount);         //adds ticket(s) to basket
 
 
 
                         //keep adding tickets until No is pressed/typed
-                        System.out.println("Add more tickets? Y/N");
+                        System.out.println("Add more tickets? Y/N");                //Prompt instruction
                         addmore:
                         while (true){
 
-                            switch (scanObj.next().toLowerCase()){
+                            switch (scanObj.next().toLowerCase()){                  //yes or no
                                 case "y":{
                                     break addmore;
                                 }
@@ -89,38 +89,38 @@ public class ticketB_Main {
 
                 case 2: {
                     //Print ticket price
-                    booth.printTicketTypes();
+                    booth.printTicketTypes();               //print
                     break;
                 }
 
                 case 3: { //view balance case
-                    System.out.println("Your current balance is: "+booth.getBalance() + " DKK");
+                    System.out.println("Your current balance is: "+booth.getBalance() + " DKK");    //prompt balance
                     System.out.println("Insert money: ");
-                    double moneyin = scanObj.nextDouble();
+                    double moneyin = scanObj.nextDouble();                                          //scan for inserted money
                     scanObj.nextLine();
-                    booth.addBalance(moneyin);
-                    System.out.println("Your balance is now: "+booth.getBalance()+" DKK");
+                    booth.addBalance(moneyin);                                                      //adds inserted money to balance
+                    System.out.println("Your balance is now: "+booth.getBalance()+" DKK");          //print new balance
                     break;
                 }
                 case 4:{ //view basket
                     System.out.println("You have these tickets in your basket:");
-                    booth.itemsInBasket();
+                    booth.itemsInBasket();                                                          //Prints current shoppingcart
                     System.out.println("Your balance is: " + booth.getBalance() + " DKK");
                     break;
                 }
 
                 case 7:{ //checkout case
                     System.out.println("You have these tickets in your basket:");
-                    booth.itemsInBasket();
-                    System.out.println("They will cost: " + booth.basketPrice() + " DKK");
-                    System.out.println("Your balance: " + booth.getBalance());
+                    booth.itemsInBasket();                                                          //Prints current shoppingcart
+                    System.out.println("They will cost: " + booth.basketPrice() + " DKK");          //total price
+                    System.out.println("Your balance: " + booth.getBalance());                      //balance
                     System.out.println("Are you sure you want to check out? Y/N");
                     boolean checkout = false;
                     outer:
                     while (true){
-                        switch (scanObj.nextLine().toLowerCase()){
+                        switch (scanObj.nextLine().toLowerCase()){                                  //yes/no checkout
                             case "y":{
-                                checkout = true;
+                                checkout = true;                                                    //set bool
                                 break outer;
                             }
                             case "n":{
@@ -133,11 +133,11 @@ public class ticketB_Main {
                         }
                     }
 
-                    if(checkout){
-                        if(booth.getBalance() >= booth.basketPrice()){
+                    if(checkout){                                                                       //if bool is set true
+                        if(booth.getBalance() >= booth.basketPrice()){                                  //if balance is larger or equal to basket
                             System.out.println("Printing tickets..");
-                            booth.payingForTickets();
-                        } else {
+                            booth.payingForTickets();                                                   //pays for tickets and transaction complete
+                        } else {                                                                        //Not enough balance
                             System.out.println("You dont have enough money, please add to balance!");
                         }
                     }
@@ -146,13 +146,13 @@ public class ticketB_Main {
                 //fjerner billetter fra kurven
                 case 5:{
                     System.out.println("Please write what ticket you want discarded from the basket");
-                    booth.itemsInBasket();
-                    booth.removeItemFromBasket(scanObj.nextInt());
+                    booth.itemsInBasket();                                                              //show all items in basket
+                    booth.removeItemFromBasket(scanObj.nextInt());                                      //scans for item to remove
                     break;
                 }
 
                 case 6:{ //clear basket case
-                    booth.clearBasket();
+                    booth.clearBasket();                                                                //Clean basket
                     System.out.println("Basket has been cleared.");
                     break;
                 }
@@ -164,7 +164,7 @@ public class ticketB_Main {
 
                     if(booth.accessCode(password)){             //If password is correct
                         System.out.println("Access granted");
-                        boolean adminAccess = true;
+                        boolean adminAccess = true;             //set bool true
 
                         while(adminAccess){        //While admin menu is active
                             //Prompt admin menu
@@ -187,83 +187,83 @@ public class ticketB_Main {
                             switch(adminChoice){                    //Switch case begin
                                 case 1: {                            //Get sales
                                     try {
-                                        booth.readLogFile();
+                                        booth.readLogFile();        //read all sales
                                     } catch (IOException e) {
                                         System.err.println("error cant write to log file");
                                     }
                                     break;
                                 }
                                 case 2: {                           //New price
-                                    booth.printTicketTypes();
+                                    booth.printTicketTypes();                   //print all tickets
                                     System.out.println("What ticket do you want to change the price for?");
-                                    int whatticket = scanObj.nextInt();
+                                    int whatticket = scanObj.nextInt();         //scans for ticket type
                                     System.out.println("To what price?");
-                                    double newprice = scanObj.nextDouble();
-                                    booth.changeTicketPrice(whatticket, newprice);
+                                    double newprice = scanObj.nextDouble();     //new price
+                                    booth.changeTicketPrice(whatticket, newprice);  //change ticket
                                     System.out.println("Great! Now tickets look like this:");
-                                    booth.printTicketTypes();
+                                    booth.printTicketTypes();                   //print all tickets (updated)
                                     break;
                                 }
                                 case 3:{
                                     System.out.println("Creating new ticket:\nPlease enter a name:");
                                     scanObj.nextLine();
-                                    String nameForTicket = scanObj.nextLine();
+                                    String nameForTicket = scanObj.nextLine();          //scan for ticket name
                                     System.out.println("Now enter a price for this ticket:");
-                                    double priceForTicket = scanObj.nextDouble();
-                                    booth.addTicket(nameForTicket,priceForTicket);
+                                    double priceForTicket = scanObj.nextDouble();       //scan for ticket price
+                                    booth.addTicket(nameForTicket,priceForTicket);      //Create ticket
                                     System.out.println("These are now the available tickets:");
-                                    booth.printTicketTypes();
+                                    booth.printTicketTypes();                           //print all tickets
                                     break;
                                 }
                                 case 4:{
                                     System.out.println("These are the available tickets:");
-                                    booth.printTicketTypes();
+                                    booth.printTicketTypes();                           //shows all ticket types
                                     System.out.println("What ticket do you want to print?");
-                                    int ticketID = scanObj.nextInt();
-                                    booth.printTicketByID(ticketID);
+                                    int ticketID = scanObj.nextInt();                   //choose what ticket to print
+                                    booth.printTicketByID(ticketID);                    //prints ticket
                                     break;
                                 }
                                 case 5:{
                                     System.out.println("ID types: \n-2 = payback\n-1 = money input\n>0 = what type of ticket");
                                     System.out.println("Search by id type:");
-                                    int newid = scanObj.nextInt();
-                                    booth.searchByID(newid);
+                                    int newid = scanObj.nextInt();                      //scan for id
+                                    booth.searchByID(newid);                            //searches for id
                                     break;
                                 }
                                 case 6:{
                                     System.out.println("Enter minimum:");
-                                    double min = scanObj.nextDouble();
+                                    double min = scanObj.nextDouble();                  //scan for minimum
                                     System.out.println("Enter maximum:");
-                                    double max = scanObj.nextDouble();
-                                    booth.findMoneyIn_InRange(min,max);
+                                    double max = scanObj.nextDouble();                  //scan for maximum
+                                    booth.findMoneyIn_InRange(min,max);                 //find between min-max
                                     break;
                                 }
                                 case 7:{
                                     System.out.println("When entering minimum and maximum, keep in mind the payouts are a negative value.");
                                     System.out.println("Enter minimum:");
-                                    double min = scanObj.nextDouble();
+                                    double min = scanObj.nextDouble();                  //scan for minimum
                                     System.out.println("Enter maximum:");
-                                    double max = scanObj.nextDouble();
-                                    booth.findPayout_InRange(min,max);
+                                    double max = scanObj.nextDouble();                  //scan for maximum
+                                    booth.findPayout_InRange(min,max);                  //find between min-max
                                     break;
                                 }
 
                                 case 8:{
-                                    booth.seeMoneyMade();
+                                    booth.seeMoneyMade();                               //print money made
                                     break;
                                 }
 
                                 case 9:{
                                     scanObj.nextLine();
                                     System.out.println("Please type the new password:");
-                                    String newcode = scanObj.nextLine();
-                                    booth.changeCode(newcode);
+                                    String newcode = scanObj.nextLine();                //scan for new password
+                                    booth.changeCode(newcode);                          //change password
                                     break;
                                 }
 
                                 case 10:{             //Exit
                                     System.out.println("Goodbye admin!");
-                                    adminAccess = false;
+                                    adminAccess = false;                                //shut down admin menu
                                     break;
                                 }
 
@@ -283,7 +283,7 @@ public class ticketB_Main {
                 case 10:   {
                     //Exit
                     System.out.println("Goodbye!");
-                    runprogram = false;
+                    runprogram = false;                             //shut down program
                     break;
                 }
 

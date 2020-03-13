@@ -3,20 +3,20 @@ import java.util.*;
 
 public class transactions {
 
-    //opretter et object array med transaktioner
+    //create a object array with transactions
     ArrayList<transaction> shoppingCart = new ArrayList<transaction>();
     ArrayList<Double> cashArray = new ArrayList<>();
     ArrayList<String> dateArray = new ArrayList<>();
     ArrayList<Double> idArray = new ArrayList<>();
 
 
-    //funktion som tiljøjer en transaktion
+    //adds transaction
     public void addTrans(double cashflow,int id){
       transaction trans = new transaction(cashflow,id);
       shoppingCart.add(trans);
     }
 
-    //en funktion som printer alle logge fra arrayet af objekter
+    //prints all logs from array of objects
     public void printLog(){
         for (transaction trans : shoppingCart){
             System.out.println(trans.toString());
@@ -24,18 +24,18 @@ public class transactions {
     }
 
 
-    //metode som skriver en fil med en test streng
+    //write a file with each purchase logged
     public void writeLog() throws IOException
     {
         FileWriter fil = new FileWriter("logfile.txt", true);
         PrintWriter ud = new PrintWriter(fil);
 
 
-        //skriver transactions i en fil med følgende format: Dato,mængde,id
+        //writes transaction date,amount,id
         for(int i = 0; i < shoppingCart.size(); i++){
             ud.println(shoppingCart.get(i));
         }
-        ud.close(); // luk så alle data skrives til disken
+        ud.close(); // close file
 
         //System.out.println(shoppingCart);
         shoppingCart.removeAll(shoppingCart);
@@ -43,7 +43,7 @@ public class transactions {
     }
 
 
-    //funktion som printer filen logfile
+    //print logfile to admin
     public void readLog() throws IOException {
         FileReader file = new FileReader("logfile.txt");
         BufferedReader in = new BufferedReader(file);
@@ -57,10 +57,8 @@ public class transactions {
 
 
 
-    //funktion som læser filen logfile og tager datoerne og balance ændring og putter dem i hvert sit array
 
-    //hvis vi vil sortere efter type log, (udprint af billet, indsætning af penge og tilbagebetaling) kan vi
-    //bare tilføje et ekstra array som læser værdien af id
+    //reads logfile and puts it into an array
     public void logToArray() throws IOException{
         FileReader file = new FileReader("logfile.txt");
         BufferedReader in = new BufferedReader(file);
@@ -81,7 +79,7 @@ public class transactions {
         }
     }
 
-
+    //find payback from array
     public void findPayback() throws IOException{
         logToArray();
         for(int i = 0;  i < cashArray.size(); i++){
@@ -91,7 +89,7 @@ public class transactions {
         }
     }
 
-
+    //find purchase from array
     public void findPurchase(double x) throws IOException{
         logToArray();
         for(int i = 0;  i < cashArray.size(); i++){
@@ -101,7 +99,7 @@ public class transactions {
         }
     }
 
-
+    //find purchase by id from array
     public void findByID(int newID) throws  IOException{
         logToArray();
         int i = 0;
@@ -113,6 +111,7 @@ public class transactions {
         }
     }
 
+    //find money in range from array
     public void findMoneyIn_InRange(double min, double max) throws IOException{
         logToArray();
         int i = 0;
@@ -125,6 +124,7 @@ public class transactions {
         }
     }
 
+    //Find payout in range from array
     public void findPayout_InRange(double min, double max) throws IOException{
         logToArray();
         int i = 0;

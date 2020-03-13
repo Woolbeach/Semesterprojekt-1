@@ -16,13 +16,6 @@ public class transactions {
       shoppingCart.add(trans);
     }
 
-    //prints all logs from array of objects
-    public void printLog(){
-        for (transaction trans : shoppingCart){
-            System.out.println(trans.toString());
-        }
-    }
-
 
     //write a file with each purchase logged
     public void writeLog() throws IOException
@@ -32,13 +25,13 @@ public class transactions {
 
 
         //writes transaction date,amount,id
-        for(int i = 0; i < shoppingCart.size(); i++){
-            ud.println(shoppingCart.get(i));
+        for (transaction transaction : shoppingCart) {
+            ud.println(transaction);
         }
         ud.close(); // close file
 
         //System.out.println(shoppingCart);
-        shoppingCart.removeAll(shoppingCart);
+        shoppingCart.clear();
         //System.out.println(shoppingCart);
     }
 
@@ -64,9 +57,9 @@ public class transactions {
         BufferedReader in = new BufferedReader(file);
         String currentLine = in.readLine();
 
-        cashArray.removeAll(cashArray);
-        dateArray.removeAll(dateArray);
-        idArray.removeAll(idArray);
+        cashArray.clear();
+        dateArray.clear();
+        idArray.clear();
 
         while (currentLine !=null) {
             String[] data = currentLine.split(",");
@@ -76,26 +69,6 @@ public class transactions {
             double iid = Integer.valueOf(data[2]);
             idArray.add(iid);
             currentLine = in.readLine();
-        }
-    }
-
-    //find payback from array
-    public void findPayback() throws IOException{
-        logToArray();
-        for(int i = 0;  i < cashArray.size(); i++){
-            if(cashArray.get(i) < 0 && idArray.get(i)==-2){
-                System.out.println(dateArray.get(i) + " " + cashArray.get(i)+" " + idArray.get(i));
-            }
-        }
-    }
-
-    //find purchase from array
-    public void findPurchase(double x) throws IOException{
-        logToArray();
-        for(int i = 0;  i < cashArray.size(); i++){
-            if(cashArray.get(i) >= x){
-                System.out.println(dateArray.get(i) + " " + cashArray.get(i)+" " + idArray.get(i));
-            }
         }
     }
 

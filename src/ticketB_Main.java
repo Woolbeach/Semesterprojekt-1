@@ -13,10 +13,8 @@ public class ticketB_Main {
         Scanner scanObj = new Scanner(System.in);       //Create scanner object
         ticketBoothClass booth = new ticketBoothClass("1234");    //Create Booth object with code 1234
 
-        int choice = 0;                                 //Menu choice integer
-        int adminChoice = 0;
-        double salesWithCurrentPrice;                   //Save sales with the current price
-        double testBalance = 0;                         //initialize variable
+        int choice;                                 //Menu choice integer
+        int adminChoice;
 
 
         boolean runprogram = true;

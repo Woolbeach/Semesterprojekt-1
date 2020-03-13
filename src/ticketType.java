@@ -11,23 +11,6 @@ public class ticketType {
         id = id1;
     }
 
-    //Returns collective sales as a double
-    public double getSales() {
-        return price * ticketsSold;
-    }
-
-    // Returns the price of a tickets current price
-    public double getPrice() {
-        return price;
-    }
-
-    //SetPrice method
-    public void setPrice(double newPrice) {
-        if (newPrice > 0) {            //if price is > 0, the price is updated
-            price = newPrice;
-        } else System.err.println("Invalid price");
-    }
-
     // Prints out a ticket and the price of the ticket
     public void printTicket() {
         System.out.println("############B##T###########");

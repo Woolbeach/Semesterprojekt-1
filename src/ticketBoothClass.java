@@ -7,7 +7,6 @@ public class ticketBoothClass {
 
     //variabler en ticketBooth skal have:
     public String code;
-    public int ticketSales;
     public double moneyMade;
 
 
@@ -86,7 +85,7 @@ public class ticketBoothClass {
         }
     }
 
-    // fjerner n billetter
+    // fjerner 1 billet
     public void removeItemFromBasket(int index){
         if(userBasket.size()>=index && index > 0){
             userBasket.remove(index-1);         // -1 fordi vi starter i 0
@@ -94,7 +93,7 @@ public class ticketBoothClass {
     }
 
     public void clearBasket(){
-        userBasket.removeAll(userBasket);
+        userBasket.clear();
     }
 
     //returner prisen på de billetter der er i kurven
@@ -116,7 +115,7 @@ public class ticketBoothClass {
             currentTicket.printTicket();
             transactionsHandler.addTrans(currentTicket.price,currentTicket.id);
         }
-        userBasket.removeAll(userBasket);
+        userBasket.clear();
         System.out.println("You get " + balance + " DKK in return!");
         if(balance!=0){
             transactionsHandler.addTrans(-balance,-2);
@@ -140,12 +139,6 @@ public class ticketBoothClass {
     public double getBalance() {
         return balance;
     }
-
-    //Returns a test balance
-    public double setTestBalance(int newBalance){
-        return testBalance += newBalance;
-    }
-
 
 
     public void writeToLog() throws  IOException{
@@ -193,9 +186,8 @@ public class ticketBoothClass {
     }
 
     //prints total money made
-    public double seeMoneyMade(){
+    public void seeMoneyMade(){
         System.out.println("This machine has made: "+moneyMade+" DKK");
-        return moneyMade;
     }
 
     //search in log for given id

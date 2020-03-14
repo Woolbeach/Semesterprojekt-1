@@ -58,7 +58,7 @@ public class ticketBoothClass {
         }
     }
 
-    //funktion som viser de billetyper der er:
+    //method for printing current ticket types
     public int printTicketTypes(){
         int amount = 0;
         for (ticketType ticket : ticketList){
@@ -68,7 +68,7 @@ public class ticketBoothClass {
         return amount;
     }
 
-    //printer de billetter brugeren har i kruven
+    //prints the contents of the basket
     public void itemsInBasket(){
         int ticketNumber = 1;
         for (ticketType currentItem : userBasket){
@@ -77,10 +77,10 @@ public class ticketBoothClass {
         }
     }
 
-    // fjerner 1 billet
+    // removes one ticket
     public void removeItemFromBasket(int index){
         if(userBasket.size()>=index && index > 0){
-            userBasket.remove(index-1);         // -1 fordi vi starter i 0
+            userBasket.remove(index-1);         // -1 since we start in 0
         }
     }
 
@@ -88,7 +88,7 @@ public class ticketBoothClass {
         userBasket.clear();
     }
 
-    //returner prisen på de billetter der er i kurven
+    //returns the total price of the tickets in the basket
     public double basketPrice(){
         double totalPrice = 0;
         for (ticketType currentTicket : userBasket){
@@ -98,7 +98,7 @@ public class ticketBoothClass {
     }
 
 
-    //funktion som betaler, returner penge og fjerner billetterne fra kurven
+    //method for checking out
     public void payingForTickets(){
         double basketP = basketPrice();
         balance -= basketP;
@@ -117,7 +117,7 @@ public class ticketBoothClass {
     //*****************************************************************************************************************
 
 
-    //function for adding money to balance
+    //method for adding money to balance
     public void addBalance(double moneyin){
         if (moneyin > 0) {
             transactionsHandler.addTrans(moneyin,-1);
@@ -127,7 +127,7 @@ public class ticketBoothClass {
         }
     }
 
-    //Returns current balance value
+    //returns current balance value
     public double getBalance() {
         return balance;
     }
@@ -137,19 +137,15 @@ public class ticketBoothClass {
         transactionsHandler.writeLog();
     }
 
+    //admin functionality*****************************************************************************************************************
 
-
-
-
-    //admin funktioner*****************************************************************************************************************
-
-    //Returns true if accessCode is correct
+    //returns true if accessCode is correct
     public boolean accessCode(String code1) {
         return code1.equals(code);
     }
 
 
-    //function for changing the admin code
+    //method for changing the admin code
     public void changeCode(String newcode){
         code = newcode;
         System.out.println("Password has changed to: "+code);

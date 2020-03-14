@@ -22,7 +22,9 @@ public class ticketType {
         System.out.println("############B##T###########");
         System.out.println();
     }
-
+    public double getPrice(){
+        return price;
+    }
     public String basketString(){
         return name;
     }

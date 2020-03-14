@@ -33,7 +33,7 @@ public class ticketBoothClass {
     ticketType child = new ticketType("Child", 12, 2);
     ticketType bicycle = new ticketType("Bike", 18, 3);
     ticketType elderly = new ticketType("Elderly", 12, 4);
-    //de bliver tilføjet i et array, så kan man altid tilføje flere typer
+    //added in an array list for expandability
     ArrayList<ticketType> ticketList = new ArrayList<ticketType>();
 
     public void addDefaultTickets(){

@@ -2,16 +2,15 @@ public class ticketType {
     public String name;
     public double price;
     public int id;
-    public int ticketsSold;
 
-    //konstruktøren
+    //constructor
     ticketType(String name1, double price1, int id1){
         name = name1;
         price = price1;
         id = id1;
     }
 
-    // Prints out a ticket and the price of the ticket
+    // prints out a ticket and the price of the ticket
     public void printTicket() {
         System.out.println("############B##T###########");
         System.out.println("#   Borgen Trafikselskab  #");
@@ -28,7 +27,7 @@ public class ticketType {
         return name;
     }
 
-    //printer information om billeten
+    //prints ticket info
     public String toString(){
         return "#"+id +"\tType: " + name + "\n#\tPrice: " + price+" DKK\n";
     }

@@ -2,13 +2,11 @@ import java.io.*;
 import java.util.*;
 
 public class transactions {
-
     //create a object array with transactions
     ArrayList<transaction> shoppingCart = new ArrayList<transaction>();
     ArrayList<Double> cashArray = new ArrayList<>();
     ArrayList<String> dateArray = new ArrayList<>();
     ArrayList<Double> idArray = new ArrayList<>();
-
 
     //adds transaction
     public void addTrans(double cashflow,int id){
@@ -16,40 +14,31 @@ public class transactions {
       shoppingCart.add(trans);
     }
 
-
     //write a file with each purchase logged
     public void writeLog() throws IOException
     {
-        FileWriter fil = new FileWriter("logfile.txt", true);
-        PrintWriter ud = new PrintWriter(fil);
+        FileWriter file = new FileWriter("logfile.txt", true);
+        PrintWriter out = new PrintWriter(file);
 
 
         //writes transaction date,amount,id
         for (transaction transaction : shoppingCart) {
-            ud.println(transaction);
+            out.println(transaction);
         }
-        ud.close(); // close file
-
-        //System.out.println(shoppingCart);
+        out.close(); // close file
         shoppingCart.clear();
-        //System.out.println(shoppingCart);
     }
-
 
     //print logfile to admin
     public void readLog() throws IOException {
         FileReader file = new FileReader("logfile.txt");
         BufferedReader in = new BufferedReader(file);
-
         String currentLine = in.readLine();
         while (currentLine != null) {
             System.out.println("Læst: " + currentLine);
             currentLine = in.readLine();
         }
     }
-
-
-
 
     //reads logfile and puts it into an array
     public void logToArray() throws IOException{
@@ -61,7 +50,7 @@ public class transactions {
         dateArray.clear();
         idArray.clear();
 
-        while (currentLine !=null) {
+        while (currentLine != null) {
             String[] data = currentLine.split(",");
             double inum = Double.valueOf(data[1]);
             cashArray.add(inum);
@@ -97,7 +86,7 @@ public class transactions {
         }
     }
 
-    //Find payout in range from array
+    //find payout in range from array
     public void findPayout_InRange(double min, double max) throws IOException{
         logToArray();
         int i = 0;

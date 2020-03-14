@@ -3,35 +3,32 @@ import java.util.ArrayList;
 
 public class ticketBoothClass {
     public double balance;
-    private double testBalance;
 
-    //variabler en ticketBooth skal have:
+    //variables for ticket booth
     public String code;
     public double moneyMade;
 
-
-    //konstruktøren, opretter en ticketbooth med standard kode 1234
+    //constructor with a standard password
     public ticketBoothClass(){
         code = "1234";
         addDefaultTickets();
     }
 
-    //konstruktør med en selvvalgt kode
+    //constructor with custom password
     public ticketBoothClass(String customcode){
         code = customcode;
         addDefaultTickets();
     }
 
-    //tilføjer et objekt der håndterer transactions
+    //object for handling transactions
     transactions transactionsHandler = new transactions();
 
-    //laver en kurv hvor brugeren kan putte sin ønskede billeter i
+    //creates basket for purchases
     ArrayList<ticketType> userBasket = new ArrayList<>();
 
+    //ticket area*****************************************************************************************************************
 
-    //billet område*****************************************************************************************************************
-
-    //her er default-billettyperne
+    //default ticket types
     ticketType adult = new ticketType("Adult", 24, 1);
     ticketType child = new ticketType("Child", 12, 2);
     ticketType bicycle = new ticketType("Bike", 18, 3);
@@ -39,7 +36,6 @@ public class ticketBoothClass {
     //de bliver tilføjet i et array, så kan man altid tilføje flere typer
     ArrayList<ticketType> ticketList = new ArrayList<ticketType>();
 
-    //det skal gøres i en funktion af en eller anden grund..
     public void addDefaultTickets(){
         ticketList.add(adult);
         ticketList.add(child);
@@ -47,8 +43,7 @@ public class ticketBoothClass {
         ticketList.add(elderly);
     }
 
-
-    //metode til at tilføje en ny billettype
+    //method for adding new ticket types
     public void addTicket(String name,double price){
         int ticketListSize = ticketList.size()+1;
         System.out.println("listsize:"+ticketListSize);
@@ -56,14 +51,12 @@ public class ticketBoothClass {
         ticketList.add(newtick);
     }
 
-
-    //tilføjer billetter til userBasket som er kurven
+    //adds ticket to basket
     public void addTicketToBasket(int id, int amount){
         for (int i = 0; i < amount; i++) {
             userBasket.add(ticketList.get(id-1));
         }
     }
-
 
     //funktion som viser de billetyper der er:
     public int printTicketTypes(){
@@ -74,7 +67,6 @@ public class ticketBoothClass {
         }
         return amount;
     }
-
 
     //printer de billetter brugeren har i kruven
     public void itemsInBasket(){
@@ -217,4 +209,3 @@ public class ticketBoothClass {
 
     //*****************************************************************************************************************
 }
-

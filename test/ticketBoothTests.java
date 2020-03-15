@@ -20,7 +20,7 @@ public class ticketBoothTests
         //added in an array list for expandability
         ArrayList<ticketType> ticketList = new ArrayList<ticketType>();
         booth.changeTicketPrice(2, 50);
-        System.out.println(child.getPrice());
+        System.out.println(child.price);
     }
     // Test for buying one ticket
     @Test

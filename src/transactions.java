@@ -65,9 +65,10 @@ public class transactions {
     public void findByID(int newID) throws  IOException{
         logToArray();
         int i = 0;
+        System.out.println("     Date:                 Amount:  ID:");
         for (Double currentItem: idArray) {
             if(newID==currentItem){
-                System.out.println(dateArray.get(i) + " " + cashArray.get(i)+" " + idArray.get(i));
+                System.out.println(dateArray.get(i) + "  " + cashArray.get(i)+"  " + idArray.get(i));
             }
             i++;
         }
@@ -80,7 +81,7 @@ public class transactions {
         for (Double currentItem: idArray) {
             double money = cashArray.get(i);
             if(-1==currentItem && money>=min && money <= max){
-                System.out.println(dateArray.get(i) + " " + cashArray.get(i)+" " + idArray.get(i));
+                System.out.println(dateArray.get(i) + "\t\t+" + cashArray.get(i));
             }
             i++;
         }
@@ -93,7 +94,7 @@ public class transactions {
         for (Double currentItem: idArray) {
             double money = cashArray.get(i);
             if(-2==currentItem && money>=min && money <= max){
-                System.out.println(dateArray.get(i) + " " + cashArray.get(i)+" " + idArray.get(i));
+                System.out.println(dateArray.get(i) + "\t\t" + cashArray.get(i));
             }
             i++;
         }

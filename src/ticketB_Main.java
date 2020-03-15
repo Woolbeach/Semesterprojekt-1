@@ -29,7 +29,6 @@ public class ticketB_Main {
                             "#5: \tRemove item from basket\n"+
                             "#6: \tClear basket\n"+
                             "#7: \tCheckout\n" +
-
                             "#8: \tAdmin menu\n" +
                             "#10:\tExit\n"
             );
@@ -153,7 +152,7 @@ public class ticketB_Main {
 
                         while(adminAccess){        //while admin menu is active
                             //prompt admin menu
-                            System.out.println("\n\nPlease choose one of the following options");
+                            System.out.println("\n\n****Admin menu****\nPlease choose one of the following options:");
                             System.out.println(
                                             "#1: \tRead log\n" +
                                             "#2: \tSet price for ticket\n" +

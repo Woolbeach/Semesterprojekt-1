@@ -46,7 +46,6 @@ public class ticketBoothClass {
     //method for adding new ticket types
     public void addTicket(String name,double price){
         int ticketListSize = ticketList.size()+1;
-        System.out.println("listsize:"+ticketListSize);
         ticketType newtick = new ticketType(name,price,ticketListSize);
         ticketList.add(newtick);
     }

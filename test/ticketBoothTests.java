@@ -20,7 +20,8 @@ public class ticketBoothTests
         ArrayList<ticketType> ticketList = new ArrayList<ticketType>();
         booth.addDefaultTickets();
         booth.changeTicketPrice(2, 50);
-        System.out.println(child.price);
+        System.out.println(booth.getTicketPrice(2));
+
     }
     // Test for buying one ticket
     @Test

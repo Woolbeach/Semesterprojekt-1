@@ -84,6 +84,17 @@ public class ticketBoothClass {
         }
     }
 
+    //gets price for ticket based on id
+    public double getTicketPrice(int idin){
+        for (ticketType currentTicket: ticketList) {
+            if (currentTicket.id==idin){
+                return currentTicket.price;
+            }
+        }
+        return 0;
+    }
+
+    //clears the basket
     public void clearBasket(){
         userBasket.clear();
     }

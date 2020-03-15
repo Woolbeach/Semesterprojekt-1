@@ -21,6 +21,7 @@ public class ticketBoothTests
         booth.addDefaultTickets();
         booth.changeTicketPrice(2, 50);
         System.out.println(booth.getTicketPrice(2));
+        assertEquals(50,booth.getTicketPrice(2),0);
 
     }
     // Test for buying one ticket

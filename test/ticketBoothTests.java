@@ -16,9 +16,9 @@ public class ticketBoothTests
         ticketType child = new ticketType("Child", 12, 2);
         ticketType bicycle = new ticketType("Bike", 18, 3);
         ticketType elderly = new ticketType("Elderly", 12, 4);
-        booth.addDefaultTickets();
         //added in an array list for expandability
         ArrayList<ticketType> ticketList = new ArrayList<ticketType>();
+        booth.addDefaultTickets();
         booth.changeTicketPrice(2, 50);
         System.out.println(child.price);
     }
@@ -33,10 +33,10 @@ public class ticketBoothTests
     }
     // test for buying 10000 times tickets in which the amount is {2,2,2,2} which is 80000 tickets in total
     @Test
-    public void testOutOffBoundsBuyingTickets()
+    public void testBuyingTicketsExtreme()
     {
         ticketBoothClass booth = new ticketBoothClass("1234");    //create Booth object with code 1234
-        booth.addBalance(1000000000);
+        booth.addBalance(10000000);
         for(int i=0;i<10000;i++){
             booth.addTicketToBasket(1,2);
             booth.addTicketToBasket(2,2);
@@ -68,7 +68,7 @@ public class ticketBoothTests
     }
     // Test to see if you can add and buy 400 of each tickets in one go
     @Test
-    public void testOutOffBoundsGetMoneyMade()
+    public void testGetMoneyMadeExtreme()
     {
         ticketBoothClass booth = new ticketBoothClass("1234");    //create Booth object with code 1234
         booth.addBalance(1000000);
@@ -78,13 +78,14 @@ public class ticketBoothTests
         booth.addTicketToBasket(4,400);
         booth.payingForTickets();
         booth.seeMoneyMade();
+        assertEquals(26400,booth.moneyMade,0);
     }
     // test for what happends when you have negative balance and wants to buy a ticket
     @Test
-    public void testOutOffBoundNegativesGetMoneyMade()
+    public void testNegativeGetMoneyMade()
     {
         ticketBoothClass booth = new ticketBoothClass("1234");    //create Booth object with code 1234
-        booth.addBalance(-10);
+        booth.addBalance(-100);
         booth.addTicketToBasket(1,1);
         booth.addTicketToBasket(2,1);
         booth.addTicketToBasket(3,1);

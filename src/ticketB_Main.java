@@ -22,7 +22,7 @@ public class ticketB_Main {
             //prompt menu
             System.out.println("\n\nPlease choose one of the following options");
             System.out.println(
-                            "#1: \tBuy ticket\n" +
+                            "#1: \tAdd ticket to basket\n" +
                             "#2: \tTicket prices\n" +
                             "#3: \tAdd/View balance\n"+
                             "#4: \tView your basket\n"+
